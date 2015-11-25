@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Callbacks\IChatCallback.cs" />
+    <Compile Include="Callbacks\IGameCallback.cs" />
     <Compile Include="EndGame.cs">
       <SubType>Form</SubType>
     </Compile>
