@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TriviaServer
 {
+    /// <summary>
+    /// It declares an array of possible questions and their correctness.
+    /// </summary>
     class Answer
     {
         public string[] ar_question_answers;
