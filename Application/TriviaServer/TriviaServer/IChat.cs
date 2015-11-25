@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TriviaServer
 {
-    interface IChat
+    public interface IChat
     {
         /// <summary>
         /// It receives a message and forwards it to other players.
         /// </summary>
         /// <param name="player_id">The player that send the message.</param>
         /// <param name="message">The message that was sent.</param>
-        public void receiveMessage(int player_id, string message);
+        void receiveMessage(int player_id, string message);
     }
 }

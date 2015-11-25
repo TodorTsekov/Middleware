@@ -9,7 +9,7 @@ namespace TriviaServer.Utilities
     /// <summary>
     /// It declares a unique player and his answers so far.
     /// </summary>
-    class Player
+    public class Player
     {
         public int id;
         public bool[] ar_player_answers;

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace TriviaServer
 {
     /// <summary>
-    /// It declares an array of possible questions and their correctness.
+    /// It declares a question and its possible answers.
     /// </summary>
-    class Answer
+    public class Question
     {
-        public string[] ar_question_answers;
-        public bool[] ar_results;
+        public string questionText;
+        public List<Answer> lt_answers;
     }
 }
