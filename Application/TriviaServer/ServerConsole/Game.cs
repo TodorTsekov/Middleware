@@ -33,7 +33,6 @@ namespace TriviaContract
         /// It checks if all players are connected and the game is ready to start.
         /// </summary>
         /// <returns>True for succes, false for failure.</returns>
-        [OperationContract]
         public bool checkPlayers()
         {
             return false;
@@ -42,7 +41,6 @@ namespace TriviaContract
         /// <summary>
         /// It sends the unique id to the client.
         /// </summary>
-        [OperationContract]
         public int sendId()
         {
             return 0;
@@ -51,7 +49,6 @@ namespace TriviaContract
         /// <summary>
         /// It starts the game after the check is complete.
         /// </summary>
-        [OperationContract]
         public void startGame()
         {
             return;
@@ -62,7 +59,6 @@ namespace TriviaContract
         /// </summary>
         /// <param name="player_id">The player receiving the question.</param>
         /// <param name="question">The question to be asked.</param>
-        [OperationContract]
         public Question sendQuestion(int player_id, Question question)
         {
             return new Question();
@@ -73,7 +69,6 @@ namespace TriviaContract
         /// </summary>
         /// <param name="player_id">The player that supplied the answer.</param>
         /// <param name="answer">The number of the answer the player supplied.</param>
-        [OperationContract]
         public void receiveAnswer(int player_id, int answer)
         {
             return;
@@ -82,7 +77,6 @@ namespace TriviaContract
         /// <summary>
         /// It checks which player wins.
         /// </summary>
-        [OperationContract]
         public int checkWinner()
         {
             return 0;
