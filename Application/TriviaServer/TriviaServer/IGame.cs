@@ -29,8 +29,9 @@ namespace TriviaContract
         /// <summary>
         /// It sends the unique id to the client.
         /// </summary>
+        /// <returns>The unique id of the player.</returns>
         [OperationContract]
-        void sendId();
+        int sendId();
 
         /// <summary>
         /// It starts the game after the check is complete.
@@ -43,22 +44,24 @@ namespace TriviaContract
         /// </summary>
         /// <param name="player_id">The player receiving the question.</param>
         /// <param name="question">The question to be asked.</param>
+        /// <returns>The next question to be asked.</returns>
         [OperationContract]
-        void sendQuestion(int player_id, Question question);
+        Question sendQuestion(int player_id, Question question);
 
         /// <summary>
         /// It receives the answer the player has supplied.
-        /// </summary>
         /// <param name="player_id">The player that supplied the answer.</param>
         /// <param name="answer">The number of the answer the player supplied.</param>
+        /// </summary>
         [OperationContract]
         void receiveAnswer(int player_id, int answer);
 
         /// <summary>
         /// It checks which player wins.
         /// </summary>
+        /// <returns>The id of the winner.</returns>
         [OperationContract]
-        void checkWinner();
+        int checkWinner();
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
