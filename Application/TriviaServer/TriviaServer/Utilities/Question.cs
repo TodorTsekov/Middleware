@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TriviaServer
+namespace TriviaContract
 {
     /// <summary>
     /// It declares a question and its possible answers.

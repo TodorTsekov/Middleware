@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TriviaServer.Utilities
+namespace TriviaContract.Utilities
 {
     /// <summary>
     /// It declares a unique player and his answers so far.
