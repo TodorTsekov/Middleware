@@ -9,10 +9,10 @@ namespace TriviaContract
     public interface IChat
     {
         /// <summary>
-        /// It receives a message and forwards it to other players.
+        /// It sends a player's message to the server.
         /// </summary>
         /// <param name="player_id">The player that send the message.</param>
         /// <param name="message">The message that was sent.</param>
-        void receiveMessage(int player_id, string message);
+        void sendMessage(int player_id, string message);
     }
 }
