@@ -4,11 +4,15 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using TriviaContract.Utilities;
 
 namespace TriviaContract
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract(Namespace="TriviaContract")]
+    [ServiceContract(Namespace="TriviaContract", CallbackContract=typeof(IGameCallback))]
+    [ServiceKnownType(typeof(Answer))]
+    [ServiceKnownType(typeof(Question))]
+    [ServiceKnownType(typeof(Player))]
     public interface IGame
     {
         [OperationContract]
