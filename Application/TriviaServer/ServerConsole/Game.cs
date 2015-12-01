@@ -29,22 +29,6 @@ namespace TriviaContract
             return composite;
         }
 
-        /// <summary>
-        /// It checks if all players are connected and the game is ready to start.
-        /// </summary>
-        /// <returns>True for succes, false for failure.</returns>
-        public bool checkPlayers()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// It sends the unique id to the client.
-        /// </summary>
-        public int sendId()
-        {
-            return 0;
-        }
 
         /// <summary>
         /// It starts the game after the check is complete.
@@ -57,9 +41,7 @@ namespace TriviaContract
         /// <summary>
         /// It sends a question to a player.
         /// </summary>
-        /// <param name="player_id">The player receiving the question.</param>
-        /// <param name="question">The question to be asked.</param>
-        public Question sendQuestion(int player_id, Question question)
+        public Question getQuestion()
         {
             return new Question();
         }
@@ -69,17 +51,36 @@ namespace TriviaContract
         /// </summary>
         /// <param name="player_id">The player that supplied the answer.</param>
         /// <param name="answer">The number of the answer the player supplied.</param>
-        public void receiveAnswer(int player_id, int answer)
+        public void setAnswer(int playerId, int answer)
         {
             return;
         }
 
         /// <summary>
-        /// It checks which player wins.
+        /// It sets that a player is ready to start a game.
         /// </summary>
-        public int checkWinner()
+        /// <param name="playerId">The id of the player.</param>
+        public void setReady(int playerId)
         {
-            return 0;
+            return;
+        }
+
+        /// <summary>
+        /// It indicates that a player wants to leave the game.
+        /// </summary>
+        /// <param name="playerId">The id of the player.</param>
+        public void leave(int playerId)
+        {
+            return;
+        }
+
+        /// <summary>
+        /// It indicates that a player wants to leave the game.
+        /// </summary>
+        /// <param name="playerId">The id of the player.</param>
+        public void restart(int playerId)
+        {
+            return;
         }
     }
 }

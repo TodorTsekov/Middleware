@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IChat.cs" />
+    <Compile Include="Callbacks\IChatCallback.cs" />
+    <Compile Include="Callbacks\IGameCallback.cs" />
     <Compile Include="Utilities\Answer.cs" />
     <Compile Include="IGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

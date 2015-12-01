@@ -1,6 +1,6 @@
 ﻿namespace TriviaClient
 {
-    partial class Form1
+    partial class StartGame
     {
         /// <summary>
         /// Required designer variable.
