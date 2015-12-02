@@ -14,9 +14,16 @@ namespace TriviaClient
 {
     public partial class Trivia : Form
     {
+        TriviaServer.GameClient proxy;
+        /// <summary>
+        /// Callback context.
+        /// </summary>
+        static InstanceContext ctx;
         public Trivia()
         {
             InitializeComponent();
+            ctx=new InstanceContext()
+            proxy=new GameClient()
         }
 
         private void button2_Click(object sender, EventArgs e)
