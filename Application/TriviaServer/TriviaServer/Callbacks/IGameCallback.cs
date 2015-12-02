@@ -20,6 +20,6 @@ namespace TriviaContract
         /// It notifies the client that the game starts.
         /// </summary>
         [OperationContract(IsOneWay = true)]
-        void startGame();
+        void startGameInClient();
     }
 }

@@ -43,7 +43,8 @@ namespace TriviaContract
         /// </summary>
         public Question getQuestion()
         {
-            return new Question();
+            Answer answer = new Answer(1, "George", true, "Todor", false, "Dolores", false);
+            return new Question(1, "What's your name?", answer);
         }
 
         /// <summary>

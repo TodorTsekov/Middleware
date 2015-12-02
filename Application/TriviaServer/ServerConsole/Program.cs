@@ -14,14 +14,13 @@ namespace ServerConsole
         {
             ServiceHost host = new ServiceHost(typeof(Game));
 
+
             host.Open();
 
-            Console.WriteLine("Service started...");
-            
-            if (Console.ReadLine() == "exit")
-            {
-                host.Close();
-            }
+            Console.WriteLine("Service started...\nPress enter to exit");
+            Console.WriteLine(host.Description);
+            Console.ReadLine();
+            host.Close();
         }
     }
 }

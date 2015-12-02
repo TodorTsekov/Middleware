@@ -1,2 +1,8 @@
 C:\Users\todor\Documents\GitHub\MDW\Application\TriviaClient\TriviaClient\bin\Debug\TriviaClient.exe.config
 C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\bin\Debug\TriviaClient.exe.config
+C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.csprojResolveAssemblyReference.cache
+C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.EndGame.resources
+C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.StartGame.resources
+C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.Properties.Resources.resources
+C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.Trivia.resources
+C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.csproj.GenerateResource.Cache
