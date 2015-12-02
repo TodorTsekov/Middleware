@@ -11,7 +11,20 @@ namespace TriviaContract
     /// </summary>
     public class Question
     {
+        public int id;
         public string questionText;
-        public List<Answer> lt_answers;
+        public Answer answer;
+
+        public Question()
+        {
+
+        }
+
+        public Question(int id, string text, Answer answer)
+        {
+            this.id = id;
+            this.questionText = text;
+            this.answer = answer;
+        }
     }
 }
