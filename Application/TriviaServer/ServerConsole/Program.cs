@@ -17,9 +17,11 @@ namespace ServerConsole
             host.Open();
 
             Console.WriteLine("Service started...");
-            Console.ReadLine();
-
-            host.Close();
+            
+            if (Console.ReadLine() == "exit")
+            {
+                host.Close();
+            }
         }
     }
 }
