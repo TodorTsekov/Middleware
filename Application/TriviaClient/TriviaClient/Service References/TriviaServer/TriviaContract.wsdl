@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="TriviaContract" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="TriviaContract" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="TriviaContract/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd4" namespace="TriviaContract" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/TriviaContract" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TriviaContract.Utilities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGame_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IGame_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IGame_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_startGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:startGame" />
+  </wsdl:message>
+  <wsdl:message name="IGame_startGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:startGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_getQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:getQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IGame_getQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_setReady_InputMessage">
+    <wsdl:part name="parameters" element="tns:setReady" />
+  </wsdl:message>
+  <wsdl:message name="IGame_setReady_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setReadyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_setAnswer_InputMessage">
+    <wsdl:part name="parameters" element="tns:setAnswer" />
+  </wsdl:message>
+  <wsdl:message name="IGame_setAnswer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setAnswerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_leave_InputMessage">
+    <wsdl:part name="parameters" element="tns:leave" />
+  </wsdl:message>
+  <wsdl:message name="IGame_leave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:leaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_restart_InputMessage">
+    <wsdl:part name="parameters" element="tns:restart" />
+  </wsdl:message>
+  <wsdl:message name="IGame_restart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:restartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_setId_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:setId" />
+  </wsdl:message>
+  <wsdl:message name="IGame_startGameInClient_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:startGameInClient" />
+  </wsdl:message>
+  <wsdl:portType name="IGame">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/GetData" message="tns:IGame_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/GetDataResponse" message="tns:IGame_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/GetDataUsingDataContract" message="tns:IGame_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/GetDataUsingDataContractResponse" message="tns:IGame_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="startGame">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/startGame" message="tns:IGame_startGame_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/startGameResponse" message="tns:IGame_startGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getQuestion">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/getQuestion" message="tns:IGame_getQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/getQuestionResponse" message="tns:IGame_getQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setReady">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/setReady" message="tns:IGame_setReady_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/setReadyResponse" message="tns:IGame_setReady_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setAnswer">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/setAnswer" message="tns:IGame_setAnswer_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/setAnswerResponse" message="tns:IGame_setAnswer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="leave">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/leave" message="tns:IGame_leave_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/leaveResponse" message="tns:IGame_leave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="restart">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/restart" message="tns:IGame_restart_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/restartResponse" message="tns:IGame_restart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setId">
+      <wsdl:output wsaw:Action="TriviaContract/IGame/setId" message="tns:IGame_setId_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="startGameInClient">
+      <wsdl:output wsaw:Action="TriviaContract/IGame/startGameInClient" message="tns:IGame_startGameInClient_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
