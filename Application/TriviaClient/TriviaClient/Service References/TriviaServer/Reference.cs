@@ -83,13 +83,10 @@ namespace TriviaClient.TriviaServer {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private TriviaClient.TriviaServer.Answer answerField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string questionTextField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -102,7 +99,7 @@ namespace TriviaClient.TriviaServer {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public TriviaClient.TriviaServer.Answer answer {
             get {
                 return this.answerField;
@@ -115,7 +112,7 @@ namespace TriviaClient.TriviaServer {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public int id {
             get {
                 return this.idField;
@@ -128,7 +125,7 @@ namespace TriviaClient.TriviaServer {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public string questionText {
             get {
                 return this.questionTextField;
@@ -160,23 +157,17 @@ namespace TriviaClient.TriviaServer {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] Ar_question_answersField;
+        private string[] Ar_question_answersk__BackingFieldField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool[] Ar_resultsField;
+        private bool[] Ar_resultsk__BackingFieldField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int Question_idField;
+        private int Question_idk__BackingFieldField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] ar_question_answers1Field;
+        private string[] ar_question_answersField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool[] ar_results1Field;
+        private bool[] ar_resultsField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int question_id1Field;
+        private int question_idField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -188,80 +179,80 @@ namespace TriviaClient.TriviaServer {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Ar_question_answers {
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Ar_question_answers>k__BackingField", IsRequired=true)]
+        public string[] Ar_question_answersk__BackingField {
             get {
-                return this.Ar_question_answersField;
+                return this.Ar_question_answersk__BackingFieldField;
             }
             set {
-                if ((object.ReferenceEquals(this.Ar_question_answersField, value) != true)) {
-                    this.Ar_question_answersField = value;
-                    this.RaisePropertyChanged("Ar_question_answers");
+                if ((object.ReferenceEquals(this.Ar_question_answersk__BackingFieldField, value) != true)) {
+                    this.Ar_question_answersk__BackingFieldField = value;
+                    this.RaisePropertyChanged("Ar_question_answersk__BackingField");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool[] Ar_results {
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Ar_results>k__BackingField", IsRequired=true)]
+        public bool[] Ar_resultsk__BackingField {
             get {
-                return this.Ar_resultsField;
+                return this.Ar_resultsk__BackingFieldField;
             }
             set {
-                if ((object.ReferenceEquals(this.Ar_resultsField, value) != true)) {
-                    this.Ar_resultsField = value;
-                    this.RaisePropertyChanged("Ar_results");
+                if ((object.ReferenceEquals(this.Ar_resultsk__BackingFieldField, value) != true)) {
+                    this.Ar_resultsk__BackingFieldField = value;
+                    this.RaisePropertyChanged("Ar_resultsk__BackingField");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Question_id {
+        [System.Runtime.Serialization.DataMemberAttribute(Name="<Question_id>k__BackingField", IsRequired=true)]
+        public int Question_idk__BackingField {
             get {
-                return this.Question_idField;
+                return this.Question_idk__BackingFieldField;
             }
             set {
-                if ((this.Question_idField.Equals(value) != true)) {
-                    this.Question_idField = value;
-                    this.RaisePropertyChanged("Question_id");
+                if ((this.Question_idk__BackingFieldField.Equals(value) != true)) {
+                    this.Question_idk__BackingFieldField = value;
+                    this.RaisePropertyChanged("Question_idk__BackingField");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="ar_question_answers")]
-        public string[] ar_question_answers1 {
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public string[] ar_question_answers {
             get {
-                return this.ar_question_answers1Field;
+                return this.ar_question_answersField;
             }
             set {
-                if ((object.ReferenceEquals(this.ar_question_answers1Field, value) != true)) {
-                    this.ar_question_answers1Field = value;
-                    this.RaisePropertyChanged("ar_question_answers1");
+                if ((object.ReferenceEquals(this.ar_question_answersField, value) != true)) {
+                    this.ar_question_answersField = value;
+                    this.RaisePropertyChanged("ar_question_answers");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="ar_results")]
-        public bool[] ar_results1 {
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public bool[] ar_results {
             get {
-                return this.ar_results1Field;
+                return this.ar_resultsField;
             }
             set {
-                if ((object.ReferenceEquals(this.ar_results1Field, value) != true)) {
-                    this.ar_results1Field = value;
-                    this.RaisePropertyChanged("ar_results1");
+                if ((object.ReferenceEquals(this.ar_resultsField, value) != true)) {
+                    this.ar_resultsField = value;
+                    this.RaisePropertyChanged("ar_results");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(Name="question_id")]
-        public int question_id1 {
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int question_id {
             get {
-                return this.question_id1Field;
+                return this.question_idField;
             }
             set {
-                if ((this.question_id1Field.Equals(value) != true)) {
-                    this.question_id1Field = value;
-                    this.RaisePropertyChanged("question_id1");
+                if ((this.question_idField.Equals(value) != true)) {
+                    this.question_idField = value;
+                    this.RaisePropertyChanged("question_id");
                 }
             }
         }

@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TriviaContract.Utilities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TriviaContract.Utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TriviaContract" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TriviaContract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:complexType name="Player">
+  <xs:complexType name="Question">
     <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ar_player_answers" nillable="true" type="q1:ArrayOfboolean" />
-      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element name="answer" nillable="true" type="tns:Answer" />
+      <xs:element name="id" type="xs:int" />
+      <xs:element name="questionText" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Player" nillable="true" type="tns:Player" />
+  <xs:element name="Question" nillable="true" type="tns:Question" />
+  <xs:complexType name="Answer">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="_x003C_Ar_question_answers_x003E_k__BackingField" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="_x003C_Ar_results_x003E_k__BackingField" nillable="true" type="q2:ArrayOfboolean" />
+      <xs:element name="_x003C_Question_id_x003E_k__BackingField" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="ar_question_answers" nillable="true" type="q3:ArrayOfstring" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="ar_results" nillable="true" type="q4:ArrayOfboolean" />
+      <xs:element name="question_id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Answer" nillable="true" type="tns:Answer" />
+  <xs:complexType name="CompositeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
 </xs:schema>

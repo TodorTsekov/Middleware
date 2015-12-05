@@ -28,9 +28,14 @@ namespace TriviaClient
             proxy = new TriviaServer.GameClient(ctx);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
+            Question q = proxy.getQuestion();
+            lbl_questionText.Text = q.questionText;
 
+            bt_answer1.Text = q.answer.ar_question_answers[0].ToString();
+            bt_answer2.Text = q.answer.ar_question_answers[1].ToString();
+            bt_answer3.Text = q.answer.ar_question_answers[2].ToString();
         }
     }
 }

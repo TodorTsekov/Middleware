@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallbackHandler.cs" />
     <Compile Include="EndGame.cs">
       <SubType>Form</SubType>
     </Compile>

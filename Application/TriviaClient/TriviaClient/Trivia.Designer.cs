@@ -65,7 +65,6 @@
             this.bt_answer2.TabIndex = 1;
             this.bt_answer2.Text = "button2";
             this.bt_answer2.UseVisualStyleBackColor = true;
-            this.bt_answer2.Click += new System.EventHandler(this.button2_Click);
             // 
             // bt_answer3
             // 
@@ -126,6 +125,7 @@
             this.button4.TabIndex = 8;
             this.button4.Text = "Pause game";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
