@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TriviaServer\TriviaContract.csproj">
-      <Project>{334496dd-0ec3-4d91-a720-bb30aacd231c}</Project>
-      <Name>TriviaContract</Name>
+    <ProjectReference Include="..\ServerContract\ServerContract\ServerContract.csproj">
+      <Project>{46c67986-0e8a-46d8-8afe-9c7da0ccd41e}</Project>
+      <Name>ServerContract</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

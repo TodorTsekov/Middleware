@@ -18,7 +18,10 @@ namespace ServerConsole
             host.Open();
 
             Console.WriteLine("Service started...\nPress enter to exit");
-            Console.WriteLine(host.Description);
+            for (int i = 0; i < host.BaseAddresses.ToList().Count; i++)
+            {
+                Console.WriteLine(host.BaseAddresses.ToList()[i].ToString());
+            }
             Console.ReadLine();
             host.Close();
         }
