@@ -21,6 +21,12 @@
   <wsdl:message name="IGame_GetDataUsingDataContract_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
   </wsdl:message>
+  <wsdl:message name="IGame_setId_InputMessage">
+    <wsdl:part name="parameters" element="tns:setId" />
+  </wsdl:message>
+  <wsdl:message name="IGame_setId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IGame_startGame_InputMessage">
     <wsdl:part name="parameters" element="tns:startGame" />
   </wsdl:message>
@@ -57,9 +63,6 @@
   <wsdl:message name="IGame_restart_OutputMessage">
     <wsdl:part name="parameters" element="tns:restartResponse" />
   </wsdl:message>
-  <wsdl:message name="IGame_setId_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:setId" />
-  </wsdl:message>
   <wsdl:message name="IGame_startGameInClient_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:startGameInClient" />
   </wsdl:message>
@@ -71,6 +74,10 @@
     <wsdl:operation name="GetDataUsingDataContract">
       <wsdl:input wsaw:Action="TriviaContract/IGame/GetDataUsingDataContract" message="tns:IGame_GetDataUsingDataContract_InputMessage" />
       <wsdl:output wsaw:Action="TriviaContract/IGame/GetDataUsingDataContractResponse" message="tns:IGame_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setId">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/setId" message="tns:IGame_setId_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/setIdResponse" message="tns:IGame_setId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="startGame">
       <wsdl:input wsaw:Action="TriviaContract/IGame/startGame" message="tns:IGame_startGame_InputMessage" />
@@ -95,9 +102,6 @@
     <wsdl:operation name="restart">
       <wsdl:input wsaw:Action="TriviaContract/IGame/restart" message="tns:IGame_restart_InputMessage" />
       <wsdl:output wsaw:Action="TriviaContract/IGame/restartResponse" message="tns:IGame_restart_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="setId">
-      <wsdl:output wsaw:Action="TriviaContract/IGame/setId" message="tns:IGame_setId_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="startGameInClient">
       <wsdl:output wsaw:Action="TriviaContract/IGame/startGameInClient" message="tns:IGame_startGameInClient_OutputCallbackMessage" />

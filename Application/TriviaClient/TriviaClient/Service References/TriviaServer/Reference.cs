@@ -283,6 +283,12 @@ namespace TriviaClient.TriviaServer {
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/GetDataUsingDataContract", ReplyAction="TriviaContract/IGame/GetDataUsingDataContractResponse")]
         System.Threading.Tasks.Task<TriviaClient.TriviaServer.CompositeType> GetDataUsingDataContractAsync(TriviaClient.TriviaServer.CompositeType composite);
         
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/setId", ReplyAction="TriviaContract/IGame/setIdResponse")]
+        int setId();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/setId", ReplyAction="TriviaContract/IGame/setIdResponse")]
+        System.Threading.Tasks.Task<int> setIdAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/startGame", ReplyAction="TriviaContract/IGame/startGameResponse")]
         void startGame();
         
@@ -322,9 +328,6 @@ namespace TriviaClient.TriviaServer {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IGameCallback {
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/setId")]
-        void setId();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/startGameInClient")]
         void startGameInClient();
@@ -372,6 +375,14 @@ namespace TriviaClient.TriviaServer {
         
         public System.Threading.Tasks.Task<TriviaClient.TriviaServer.CompositeType> GetDataUsingDataContractAsync(TriviaClient.TriviaServer.CompositeType composite) {
             return base.Channel.GetDataUsingDataContractAsync(composite);
+        }
+        
+        public int setId() {
+            return base.Channel.setId();
+        }
+        
+        public System.Threading.Tasks.Task<int> setIdAsync() {
+            return base.Channel.setIdAsync();
         }
         
         public void startGame() {

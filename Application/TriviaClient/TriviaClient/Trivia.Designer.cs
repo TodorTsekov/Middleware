@@ -65,6 +65,7 @@
             this.bt_answer2.TabIndex = 1;
             this.bt_answer2.Text = "button2";
             this.bt_answer2.UseVisualStyleBackColor = true;
+            this.bt_answer2.Click += new System.EventHandler(this.bt_answer2_Click);
             // 
             // bt_answer3
             // 
