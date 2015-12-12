@@ -11,7 +11,15 @@ namespace TriviaContract
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class Game : TriviaContract.IGame
     {
-        int id = 0;
+        int client_id;
+        List<Player> list_players;
+
+        public Game()
+        {
+            this.client_id = 0;
+            this.list_players = new List<Player>();
+        }
+
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -30,10 +38,22 @@ namespace TriviaContract
             return composite;
         }
 
+        private Player search(int id)
+        {
+            foreach (Player p in list_players)
+            {
+                if (p.id == id)
+                {
+                    return p;
+                }
+            }
+            throw new Exception("Player not found.");
+        }
+
         public int setId()
         {
-            id++;
-            return id;
+            client_id++;
+            return client_id;
         }
 
         /// <summary>
@@ -69,7 +89,7 @@ namespace TriviaContract
         /// <param name="playerId">The id of the player.</param>
         public void setReady(int playerId)
         {
-            return;
+            list_players.Add()
         }
 
         /// <summary>
