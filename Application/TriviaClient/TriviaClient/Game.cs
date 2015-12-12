@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
+using TriviaClient.TriviaServer;
 
 namespace TriviaClient
 {
-    class Game
+    public class Game : IGameCallback
     {
         public int id;
 
@@ -21,9 +23,10 @@ namespace TriviaClient
         /// <summary>
         /// It notifies the client that the game starts.
         /// </summary>
-        void startGame()
+        public void startGameInClient(int id)
         {
-            return;
+            Trivia t = new Trivia(id);
+            t.Show();
         }
 
         /// <summary>
@@ -31,7 +34,7 @@ namespace TriviaClient
         /// </summary>
         /// <param name="id">The id of the player that sent the message.</param>
         /// <param name="message">The body of the message.</param>
-        void getMessage(int id, string message)
+        public void getMessage(int id, string message)
         {
             return;
         }

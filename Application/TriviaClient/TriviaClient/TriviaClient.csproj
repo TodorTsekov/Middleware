@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CallbackHandler.cs" />
     <Compile Include="EndGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,9 +109,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\TriviaServer\TriviaContract.wsdl" />
-    <None Include="Service References\TriviaServer\TriviaContract.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\TriviaServer\TriviaContract1.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -22,12 +22,11 @@
     <MetadataSource Address="http://localhost:8733/TriviaContract" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TriviaContract.xsd" MetadataType="Schema" ID="757c704b-7391-4bd9-bcf6-e9f7276c09d5" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?xsd=xsd4" />
     <MetadataFile FileName="TriviaContract1.xsd" MetadataType="Schema" ID="bfb6523f-b647-4767-a87c-5a1f4ac8ce5c" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?xsd=xsd3" />
     <MetadataFile FileName="TriviaContract2.xsd" MetadataType="Schema" ID="54557f88-da59-4a3a-8e1f-495ccaa16e79" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?xsd=xsd2" />
-    <MetadataFile FileName="TriviaContract.wsdl" MetadataType="Wsdl" ID="768a05db-4525-45a1-941b-540e7f899717" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?wsdl=wsdl0" />
-    <MetadataFile FileName="TriviaContract3.xsd" MetadataType="Schema" ID="5987aaf2-ec50-43c8-8cf9-d4d8ab4c2b5e" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?xsd=xsd0" />
     <MetadataFile FileName="TriviaContract4.xsd" MetadataType="Schema" ID="26fa2715-a24f-4d4d-a3f4-61d3c0ffa216" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?xsd=xsd1" />
+    <MetadataFile FileName="TriviaContract3.xsd" MetadataType="Schema" ID="5987aaf2-ec50-43c8-8cf9-d4d8ab4c2b5e" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?xsd=xsd0" />
+    <MetadataFile FileName="TriviaContract.wsdl" MetadataType="Wsdl" ID="768a05db-4525-45a1-941b-540e7f899717" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?wsdl=wsdl0" />
     <MetadataFile FileName="TriviaContract.disco" MetadataType="Disco" ID="b7c85091-afe1-4dad-9e12-cb4939e2f861" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?disco" />
     <MetadataFile FileName="Game.wsdl" MetadataType="Wsdl" ID="c31d5bae-c64e-48d6-b61d-df0efffd5ac0" SourceId="1" SourceUrl="http://localhost:8733/TriviaContract?wsdl" />
   </Metadata>

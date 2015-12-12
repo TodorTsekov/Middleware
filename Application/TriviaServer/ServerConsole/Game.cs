@@ -89,7 +89,15 @@ namespace TriviaContract
         /// <param name="playerId">The id of the player.</param>
         public void setReady(int playerId)
         {
-            list_players.Add()
+            list_players.Add(new Player(playerId));
+            if (list_players.Count() == 2)
+            {
+                foreach (Player p in list_players)
+                {
+                    p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+                    p.callback.startGameInClient(p.id);
+                }
+            }
         }
 
         /// <summary>

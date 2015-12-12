@@ -330,7 +330,7 @@ namespace TriviaClient.TriviaServer {
     public interface IGameCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/startGameInClient")]
-        void startGameInClient();
+        void startGameInClient(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

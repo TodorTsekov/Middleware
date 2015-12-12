@@ -15,21 +15,21 @@ namespace TriviaClient
     public partial class StartGame : Form
     {
         private GameClient proxy;
-        static CallbackHandler callback;
+        static Game callback;
         static InstanceContext ctx;
         static int global_id;
         public StartGame()
         {
             InitializeComponent();
-            callback = new CallbackHandler();
+            callback = new Game();
             ctx = new InstanceContext(callback);
             proxy = new GameClient(ctx);
-            global_id=proxy.set
+            global_id = proxy.setId();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            proxy.setReady()
+            proxy.setReady(global_id);
         }
     }
 }

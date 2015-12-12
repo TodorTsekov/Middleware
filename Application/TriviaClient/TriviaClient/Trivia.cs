@@ -15,17 +15,19 @@ namespace TriviaClient
     public partial class Trivia : Form
     {
         private TriviaServer.GameClient proxy;
-        static CallbackHandler callback;
+        static Game callback;
         /// <summary>
         /// Callback context.
         /// </summary>
         static InstanceContext ctx;
-        public Trivia()
+        static int global_id;
+        public Trivia(int id)
         {
             InitializeComponent();
-            callback=new CallbackHandler();
+            callback=new Game();
             ctx = new InstanceContext(callback);
             proxy = new TriviaServer.GameClient(ctx);
+            global_id = id;
         }
 
         private void button4_Click(object sender, EventArgs e)
