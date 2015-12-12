@@ -14,6 +14,7 @@ namespace TriviaContract
     public class Game : TriviaContract.IGame
     {
         int client_id;
+        int question_counter;
         List<Player> list_players;
         List<Question> list_question;
 
@@ -21,6 +22,8 @@ namespace TriviaContract
         {
             this.client_id = 0;
             this.list_players = new List<Player>();
+            this.question_counter = 1;
+            populate();
         }
 
         private void populate()
@@ -44,7 +47,9 @@ namespace TriviaContract
             question = new Question(4, "Exposure to sunlight helps a person improve his health because:", answer);
             list_question.Add(question);
 
-
+            answer = new Answer(5, "by wind erosion", false, "of its mineral content", true, "by water erosion", false);
+            question = new Question(5, "The chief purpose of crop rotation is to check the loss of top soil", answer);
+            list_question.Add(question);
         }
 
         public string GetData(int value)
@@ -96,9 +101,9 @@ namespace TriviaContract
         /// </summary>
         public Question getQuestion()
         {
-            Answer answer = new Answer(1, "George", true, "Todor", false, "Dolores", false);
-            return new Question(1, "What's your name?", answer);
-
+            Question question = list_question.Find(q => q.id == question_counter);
+            question_counter++;
+            return question;
         }
 
         /// <summary>
@@ -106,9 +111,11 @@ namespace TriviaContract
         /// </summary>
         /// <param name="player_id">The player that supplied the answer.</param>
         /// <param name="answer">The number of the answer the player supplied.</param>
-        public void setAnswer(int playerId, int answer)
+        public void setAnswer(int playerId, int questionId, int answer)
         {
-            return;
+            Player player = search(playerId);
+            Question question = list_question.Find(q => q.id == questionId);
+            player.addAnswer(question.answer.ar_results[answer]);
         }
 
         /// <summary>
