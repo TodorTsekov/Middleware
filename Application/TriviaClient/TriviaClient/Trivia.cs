@@ -28,6 +28,7 @@ namespace TriviaClient
             ctx = new InstanceContext(callback);
             proxy = new TriviaServer.GameClient(ctx);
             global_id = id;
+            this.lbl_global_id.Text = id.ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)

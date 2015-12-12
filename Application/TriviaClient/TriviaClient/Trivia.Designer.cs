@@ -43,6 +43,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lbl_global_id = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -168,11 +169,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Question";
             // 
+            // lbl_global_id
+            // 
+            this.lbl_global_id.AutoSize = true;
+            this.lbl_global_id.Location = new System.Drawing.Point(579, 400);
+            this.lbl_global_id.Name = "lbl_global_id";
+            this.lbl_global_id.Size = new System.Drawing.Size(35, 13);
+            this.lbl_global_id.TabIndex = 13;
+            this.lbl_global_id.Text = "label1";
+            // 
             // Trivia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 446);
+            this.Controls.Add(this.lbl_global_id);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button6);
@@ -209,5 +220,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lbl_global_id;
     }
 }

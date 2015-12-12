@@ -5,10 +5,12 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using TriviaContract;
+using System.Dynamic;
 
 namespace TriviaContract
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Game : TriviaContract.IGame
     {
         int client_id;
@@ -90,6 +92,7 @@ namespace TriviaContract
         public void setReady(int playerId)
         {
             list_players.Add(new Player(playerId));
+            Console.WriteLine("Player " + playerId.ToString() + " connected.");
             if (list_players.Count() == 2)
             {
                 foreach (Player p in list_players)
