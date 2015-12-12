@@ -113,9 +113,12 @@ namespace TriviaContract
         /// <param name="answer">The number of the answer the player supplied.</param>
         public void setAnswer(int playerId, int questionId, int answer)
         {
-            Player player = search(playerId);
+            Player player = list_players.Find(p => p.id == playerId);
             Question question = list_question.Find(q => q.id == questionId);
             player.addAnswer(question.answer.ar_results[answer]);
+            Console.WriteLine("Question: " + question.questionText);
+            Console.WriteLine("Player " + playerId.ToString() + " answered " + question.answer.ar_question_answers[answer]);
+            Console.WriteLine("Which is " + question.answer.ar_results[answer].ToString());
         }
 
         /// <summary>

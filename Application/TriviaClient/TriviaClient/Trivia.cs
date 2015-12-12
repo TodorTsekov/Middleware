@@ -29,6 +29,11 @@ namespace TriviaClient
             proxy = new TriviaServer.GameClient(ctx);
             global_id = id;
             this.lbl_global_id.Text = id.ToString();
+            Question question = proxy.getQuestion();
+            lbl_questionText.Text = question.questionText;
+            bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
+            bt_answer2.Text = question.answer.ar_question_answers[1].ToString();
+            bt_answer3.Text = question.answer.ar_question_answers[2].ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)
