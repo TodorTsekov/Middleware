@@ -15,11 +15,36 @@ namespace TriviaContract
     {
         int client_id;
         List<Player> list_players;
+        List<Question> list_question;
 
         public Game()
         {
             this.client_id = 0;
             this.list_players = new List<Player>();
+        }
+
+        private void populate()
+        {
+            list_question = new List<Question>(5);
+            Answer answer = new Answer(1, "September 1939", true, "August 1939", false, "October 1939", false);
+            Question question = new Question(1, "When was 2nd world war started?", answer);
+            list_question.Add(question);
+
+            answer = new Answer(2, "Behavior of human beings", false, "Insects", true, "The formation of rocks", false);
+            question = new Question(2, "Entomology is the science that studies: ", answer);
+            list_question.Add(question);
+
+            answer = new Answer(3, "Tennis", false, "Cricket", false, "Volleyball", true);
+            question = new Question(3, "Federation Cup, World Cup, Allywyn International Trophy and Challenge Cup are awarded to winners of:",
+                answer);
+            list_question.Add(question);
+
+            answer = new Answer(4, "resistance power increases", false, "the infrared light kills bacteria in the body", false,
+                "the ultraviolet rays convert skin oil into Vitamin D", true);
+            question = new Question(4, "Exposure to sunlight helps a person improve his health because:", answer);
+            list_question.Add(question);
+
+
         }
 
         public string GetData(int value)
@@ -73,6 +98,7 @@ namespace TriviaContract
         {
             Answer answer = new Answer(1, "George", true, "Todor", false, "Dolores", false);
             return new Question(1, "What's your name?", answer);
+
         }
 
         /// <summary>
