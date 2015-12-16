@@ -31,7 +31,7 @@ namespace TriviaContract
                     games_array.SetValue(0, i, j);
                 }
             }
-                this.list_players = new List<Player>();
+            this.list_players = new List<Player>();
             populate();
         }
 
@@ -142,12 +142,33 @@ namespace TriviaContract
         {
             list_players.Add(new Player(playerId));
             Console.WriteLine("Player " + playerId.ToString() + " connected.");
-            if (list_players.Count() == 2)
+
+            //for every element of the game_array
+            for (int i = 0; i < games_array.GetLength(0); i++)
             {
-                foreach (Player p in list_players)
+                for (int j = 0; j < games_array.GetLength(1); j++)
                 {
-                    p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-                    p.callback.startGameInClient(p.id);
+                    //if this element is "empty"
+                    if (games_array[i, j] == 0)
+                    {
+                        //add the player's id
+                        games_array[i, j] = playerId;
+                    }
+                    // if both cells in a row are not empty start a game
+                    else if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
+                    {
+                        Player p = search(games_array[i, 0]);
+                        p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+                        p.callback.startGameInClient(p.id);
+
+                        p = search(games_array[i, 1]);
+                        p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+                        p.callback.startGameInClient(p.id);
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
         }
