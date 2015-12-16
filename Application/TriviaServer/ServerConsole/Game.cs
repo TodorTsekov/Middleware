@@ -15,14 +15,23 @@ namespace TriviaContract
     {
         int client_id;
         int question_counter;
+        int[,] games_array; 
         List<Player> list_players;
         List<Question> list_question;
 
         public Game()
         {
             this.client_id = 0;
-            this.list_players = new List<Player>();
             this.question_counter = 1;
+            games_array = new int[50, 2];
+            for (int i = 0; i < games_array.GetLength(0); i++)
+            {
+                for (int j = 0; j < games_array.GetLength(1); j++)
+                {
+                    games_array.SetValue(0, i, j);
+                }
+            }
+                this.list_players = new List<Player>();
             populate();
         }
 
@@ -102,6 +111,10 @@ namespace TriviaContract
         public Question getQuestion()
         {
             Question question = list_question.Find(q => q.id == question_counter);
+            if (question_counter % 2 == 0)
+            {
+                return question;
+            }
             question_counter++;
             return question;
         }
