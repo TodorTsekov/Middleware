@@ -153,6 +153,7 @@ namespace TriviaContract
                     {
                         //add the player's id
                         games_array[i, j] = playerId;
+                        return;
                     }
                     // if both cells in a row are not empty start a game
                     else if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
@@ -164,6 +165,9 @@ namespace TriviaContract
                         p = search(games_array[i, 1]);
                         p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
                         p.callback.startGameInClient(p.id);
+                        Console.WriteLine("Players in game {0}: {1}, {2}.", i.ToString(), games_array[i, 0].ToString(),
+                            games_array[i, 1].ToString());
+                        return;
                     }
                     else
                     {
