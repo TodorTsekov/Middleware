@@ -59,6 +59,11 @@ namespace SimpleDatabaseApplication
             if (count==1)
             {
                 MessageBox.Show("Username and password are correct.");
+                connection.Close();
+                connection.Dispose();
+                this.Hide();
+                Trivia_Lobby t_lobby = new Trivia_Lobby();
+                t_lobby.ShowDialog();
             }
             else if (count > 1)
             {
