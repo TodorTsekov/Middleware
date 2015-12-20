@@ -118,6 +118,7 @@
             this.llb_register.TabIndex = 2;
             this.llb_register.TabStop = true;
             this.llb_register.Text = "register";
+            this.llb_register.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_register_LinkClicked);
             // 
             // label3
             // 

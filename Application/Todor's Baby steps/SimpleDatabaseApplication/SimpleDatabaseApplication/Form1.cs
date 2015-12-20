@@ -75,5 +75,12 @@ namespace SimpleDatabaseApplication
             }
             connection.Close();
         }
+
+        private void llb_register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Register register = new Register();
+            register.ShowDialog();
+        }
     }
 }
