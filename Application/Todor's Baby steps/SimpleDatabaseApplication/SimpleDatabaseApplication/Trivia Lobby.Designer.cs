@@ -31,10 +31,10 @@
             this.lb_hello = new System.Windows.Forms.Label();
             this.lb_users = new System.Windows.Forms.ListBox();
             this.btn_invite = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lb_wins = new System.Windows.Forms.Label();
+            this.lb_draws = new System.Windows.Forms.Label();
+            this.lb_loses = new System.Windows.Forms.Label();
+            this.lb_rank = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lb_hello
@@ -62,51 +62,47 @@
             this.btn_invite.Text = "Invite";
             this.btn_invite.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lb_wins
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 78);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.lb_wins.AutoSize = true;
+            this.lb_wins.Location = new System.Drawing.Point(16, 78);
+            this.lb_wins.Name = "lb_wins";
+            this.lb_wins.Size = new System.Drawing.Size(0, 13);
+            this.lb_wins.TabIndex = 3;
             // 
-            // label2
+            // lb_draws
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
+            this.lb_draws.AutoSize = true;
+            this.lb_draws.Location = new System.Drawing.Point(16, 109);
+            this.lb_draws.Name = "lb_draws";
+            this.lb_draws.Size = new System.Drawing.Size(0, 13);
+            this.lb_draws.TabIndex = 4;
             // 
-            // label3
+            // lb_loses
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 141);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
+            this.lb_loses.AutoSize = true;
+            this.lb_loses.Location = new System.Drawing.Point(16, 141);
+            this.lb_loses.Name = "lb_loses";
+            this.lb_loses.Size = new System.Drawing.Size(0, 13);
+            this.lb_loses.TabIndex = 5;
             // 
-            // label4
+            // lb_rank
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(170, 78);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "label4";
+            this.lb_rank.AutoSize = true;
+            this.lb_rank.Location = new System.Drawing.Point(170, 78);
+            this.lb_rank.Name = "lb_rank";
+            this.lb_rank.Size = new System.Drawing.Size(0, 13);
+            this.lb_rank.TabIndex = 6;
             // 
             // Trivia_Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 414);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lb_rank);
+            this.Controls.Add(this.lb_loses);
+            this.Controls.Add(this.lb_draws);
+            this.Controls.Add(this.lb_wins);
             this.Controls.Add(this.btn_invite);
             this.Controls.Add(this.lb_users);
             this.Controls.Add(this.lb_hello);
@@ -122,9 +118,9 @@
         private System.Windows.Forms.Label lb_hello;
         private System.Windows.Forms.ListBox lb_users;
         private System.Windows.Forms.Button btn_invite;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lb_wins;
+        private System.Windows.Forms.Label lb_draws;
+        private System.Windows.Forms.Label lb_loses;
+        private System.Windows.Forms.Label lb_rank;
     }
 }

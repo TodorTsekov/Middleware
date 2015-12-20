@@ -81,6 +81,8 @@ namespace SimpleDatabaseApplication
             this.Hide();
             Register register = new Register();
             register.ShowDialog();
+            register = null;
+            Show();
         }
     }
 }
