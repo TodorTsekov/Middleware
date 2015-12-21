@@ -61,6 +61,7 @@
             this.tb_password.Name = "tb_password";
             this.tb_password.Size = new System.Drawing.Size(149, 20);
             this.tb_password.TabIndex = 2;
+            this.tb_password.UseSystemPasswordChar = true;
             // 
             // tb_firstname
             // 

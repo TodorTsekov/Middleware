@@ -35,6 +35,8 @@
             this.lb_draws = new System.Windows.Forms.Label();
             this.lb_loses = new System.Windows.Forms.Label();
             this.lb_rank = new System.Windows.Forms.Label();
+            this.rb_onlineplr = new System.Windows.Forms.RadioButton();
+            this.rb_allplr = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // lb_hello
@@ -50,7 +52,7 @@
             this.lb_users.FormattingEnabled = true;
             this.lb_users.Location = new System.Drawing.Point(277, 12);
             this.lb_users.Name = "lb_users";
-            this.lb_users.Size = new System.Drawing.Size(239, 329);
+            this.lb_users.Size = new System.Drawing.Size(178, 329);
             this.lb_users.TabIndex = 1;
             // 
             // btn_invite
@@ -94,11 +96,36 @@
             this.lb_rank.Size = new System.Drawing.Size(0, 13);
             this.lb_rank.TabIndex = 6;
             // 
+            // rb_onlineplr
+            // 
+            this.rb_onlineplr.AutoSize = true;
+            this.rb_onlineplr.Location = new System.Drawing.Point(187, 11);
+            this.rb_onlineplr.Name = "rb_onlineplr";
+            this.rb_onlineplr.Size = new System.Drawing.Size(89, 17);
+            this.rb_onlineplr.TabIndex = 7;
+            this.rb_onlineplr.TabStop = true;
+            this.rb_onlineplr.Text = "online players";
+            this.rb_onlineplr.UseVisualStyleBackColor = true;
+            // 
+            // rb_allplr
+            // 
+            this.rb_allplr.AutoSize = true;
+            this.rb_allplr.Checked = true;
+            this.rb_allplr.Location = new System.Drawing.Point(186, 34);
+            this.rb_allplr.Name = "rb_allplr";
+            this.rb_allplr.Size = new System.Drawing.Size(71, 17);
+            this.rb_allplr.TabIndex = 8;
+            this.rb_allplr.TabStop = true;
+            this.rb_allplr.Text = "all players";
+            this.rb_allplr.UseVisualStyleBackColor = true;
+            // 
             // Trivia_Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 414);
+            this.ClientSize = new System.Drawing.Size(476, 414);
+            this.Controls.Add(this.rb_allplr);
+            this.Controls.Add(this.rb_onlineplr);
             this.Controls.Add(this.lb_rank);
             this.Controls.Add(this.lb_loses);
             this.Controls.Add(this.lb_draws);
@@ -108,6 +135,7 @@
             this.Controls.Add(this.lb_hello);
             this.Name = "Trivia_Lobby";
             this.Text = "Trivia_Lobby";
+            this.Load += new System.EventHandler(this.Trivia_Lobby_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,5 +150,7 @@
         private System.Windows.Forms.Label lb_draws;
         private System.Windows.Forms.Label lb_loses;
         private System.Windows.Forms.Label lb_rank;
+        private System.Windows.Forms.RadioButton rb_onlineplr;
+        private System.Windows.Forms.RadioButton rb_allplr;
     }
 }

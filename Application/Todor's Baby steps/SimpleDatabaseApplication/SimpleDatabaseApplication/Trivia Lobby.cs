@@ -27,6 +27,59 @@ namespace SimpleDatabaseApplication
             connection = new OleDbConnection(connectionInfo);
         }
 
+        private void Trivia_Lobby_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rb_allplr.Checked)
+                {
 
+                    connection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = connection;
+                    command.CommandText = "select username, rank, online from user_info";
+
+                    OleDbDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (reader["online"].ToString() == "False")
+                        {
+                            lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "offline");
+                        }
+                        else
+                        {
+                            lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "online");
+                        }
+                        //lb_users.Items.Add(reader["username"].ToString() +"  "+reader["rank"].ToString()+ "  " + reader["online"].ToString());
+                    }
+                }
+                else
+                {
+                    connection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = connection;
+                    command.CommandText = "select username, rank, online from user_info";
+
+                    OleDbDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (reader["online"].ToString() == "True")
+                        {
+                            lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "online");
+                        }
+                        
+                    }
+                }
+                connection.Close();
+
+                
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("We are sorry.Something went wrong with the database." + ex);
+            }
+
+        }
+        }
     }
-}
+

@@ -60,10 +60,21 @@ namespace SimpleDatabaseApplication
             {
                 MessageBox.Show("Username and password are correct.");
                 connection.Close();
-                connection.Dispose();
-                this.Hide();
+                //connection.Dispose();
+                //bool online = true;
+                connection.Open();
+                OleDbCommand onlinecommand = new OleDbCommand();
+                onlinecommand.Connection = connection;
+
+                // -1 = to true in Access database.
+                onlinecommand.CommandText = "update user_info set online='" + -1 + "' where username='"+tb_username.Text+"'";
+
+                onlinecommand.ExecuteNonQuery();
+                connection.Close();
+                
                 Trivia_Lobby t_lobby = new Trivia_Lobby();
                 t_lobby.ShowDialog();
+                this.Close();
             }
             else if (count > 1)
             {

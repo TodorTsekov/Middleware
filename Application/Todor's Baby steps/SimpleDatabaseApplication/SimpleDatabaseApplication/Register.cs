@@ -29,22 +29,38 @@ namespace SimpleDatabaseApplication
         }
 
         private void btn_createacc_Click(object sender, EventArgs e)
-        {//I need to add so restrictions here.
+        {
             try {
                 connection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "insert into user_info([username],[password],[firstname],[rank]) values('"+tb_username.Text+"','"+tb_password.Text+"','"+tb_firstname.Text+"', '"+beginner+"')";
+                OleDbCommand existcommand = new OleDbCommand();
+                existcommand.Connection = connection;
+                existcommand.CommandText = "select * from user_info where username='" + tb_username.Text + "'";
+                OleDbDataReader reader = existcommand.ExecuteReader();
+                bool exist = false;
+                while (reader.Read())
+                {
+                    exist=true;
+                }
+                if (exist == true)
+                {
+                    MessageBox.Show("The username already exists.Pick another one.");
+                    connection.Close();
+                }
+                else
+                {
+                    connection.Close();
+                    connection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                    command.Connection = connection;
+                    command.CommandText = "insert into user_info([username],[password],[firstname],[rank]) values('" + tb_username.Text + "','" + tb_password.Text + "','" + tb_firstname.Text + "', '" + beginner + "')";
 
-                command.ExecuteNonQuery();
-                MessageBox.Show("Your account is created.");
-                connection.Close();
-                
-                this.Close();
-                
-                //Trivia_Lobby t_lobby = new Trivia_Lobby();
-                //t_lobby.ShowDialog();
-                
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Your account is created.");
+                    connection.Close();
+
+                    this.Close();
+                }
+                 
             }
             catch(Exception ex)
             {
