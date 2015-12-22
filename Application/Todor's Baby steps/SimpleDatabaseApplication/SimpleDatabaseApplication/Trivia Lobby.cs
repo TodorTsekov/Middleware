@@ -31,9 +31,27 @@ namespace SimpleDatabaseApplication
         {
             try
             {
-                if (rb_allplr.Checked)
-                {
+                // here you load the players stats
+                string test = "tt11";
+                connection.Open();
+                OleDbCommand statscommand = new OleDbCommand();
+                statscommand.Connection = connection;
+                statscommand.CommandText = "select firstname, wins, draws, loses, rank from user_info where username='"+test+"'";
 
+                OleDbDataReader stastsreader = statscommand.ExecuteReader();
+                while (stastsreader.Read())
+                {
+                    lb_hello.Text = "Hello, " + stastsreader["firstname"].ToString();
+                    lb_wins.Text = "Wins: "+stastsreader["wins"].ToString();
+                    lb_draws.Text = "Draws: " + stastsreader["draws"].ToString();
+                    lb_loses.Text = "Loses: " + stastsreader["loses"].ToString();
+                    lb_rank.Text = "Rank: " + stastsreader["rank"].ToString();
+
+                }
+                connection.Close();
+
+                //here you load the list of players
+                lb_users.Items.Clear();
                     connection.Open();
                     OleDbCommand command = new OleDbCommand();
                     command.Connection = connection;
@@ -42,7 +60,7 @@ namespace SimpleDatabaseApplication
                     OleDbDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        if (reader["online"].ToString() == "False")
+                        if (reader["online"].ToString() == "0")
                         {
                             lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "offline");
                         }
@@ -52,34 +70,69 @@ namespace SimpleDatabaseApplication
                         }
                         //lb_users.Items.Add(reader["username"].ToString() +"  "+reader["rank"].ToString()+ "  " + reader["online"].ToString());
                     }
-                }
-                else
-                {
-                    connection.Open();
-                    OleDbCommand command = new OleDbCommand();
-                    command.Connection = connection;
-                    command.CommandText = "select username, rank, online from user_info";
-
-                    OleDbDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        if (reader["online"].ToString() == "True")
-                        {
-                            lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "online");
-                        }
-                        
-                    }
-                }
                 connection.Close();
-
-                
-            }
+                   }
             catch(Exception ex)
             {
                 MessageBox.Show("We are sorry.Something went wrong with the database." + ex);
             }
 
         }
+
+        private void cb_playersonline_CheckedChanged(object sender, EventArgs e)
+        {
+            try { 
+            if (cb_playersonline.Checked==true)
+            {
+                    //int check = 1;
+                lb_users.Items.Clear();
+                connection.Open();
+                    OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                    //it says there is a data mismach and I think I have passed the variables correctly
+                    //command.CommandText = "select username, rank, online from user_info where online='" +check+"'";
+
+                    //for now I will do it like this, I will try to fix it later on
+                    command.CommandText = "select username, rank, online from user_info";
+
+                    OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                        if (reader["online"].ToString() != "0")
+                            lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "online");
+
+                }
+                connection.Close();
+            }
+            else
+            {
+                lb_users.Items.Clear();
+                connection.Open();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                command.CommandText = "select username, rank, online from user_info";
+
+                OleDbDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (reader["online"].ToString() == "0")
+                    {
+                        lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "offline");
+                    }
+                    else
+                    {
+                        lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "online");
+                    }
+                    //lb_users.Items.Add(reader["username"].ToString() +"  "+reader["rank"].ToString()+ "  " + reader["online"].ToString());
+                }
+                connection.Close();
+            }
         }
+            catch(Exception ex)
+            {
+                MessageBox.Show("We are sorry.Something went wrong with the database." + ex);
+            }
+}
+    }
     }
 

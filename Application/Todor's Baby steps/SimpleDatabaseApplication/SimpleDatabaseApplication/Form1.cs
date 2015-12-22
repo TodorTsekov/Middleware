@@ -66,8 +66,8 @@ namespace SimpleDatabaseApplication
                 OleDbCommand onlinecommand = new OleDbCommand();
                 onlinecommand.Connection = connection;
 
-                // -1 = to true in Access database.
-                onlinecommand.CommandText = "update user_info set online='" + -1 + "' where username='"+tb_username.Text+"'";
+                // we pass 1 to indicate that the player is online in Access database.
+                onlinecommand.CommandText = "update user_info set online='" + 1 + "' where username='"+tb_username.Text+"'";
 
                 onlinecommand.ExecuteNonQuery();
                 connection.Close();
