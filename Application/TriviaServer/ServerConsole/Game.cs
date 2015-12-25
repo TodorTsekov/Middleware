@@ -105,12 +105,12 @@ namespace TriviaContract
             Player p = search(player1);
             p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             p.callback.startGameInClient(p.id);
-
+            p = null;
             p = search(player2);
             p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             p.callback.startGameInClient(p.id);
-            Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(),
-                player2.ToString());
+
+            Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(), player2.ToString());
         }
 
         /// <summary>
@@ -157,43 +157,18 @@ namespace TriviaContract
                 if (games_array[i, 0] == 0 && games_array[i, 1] == 0)
                 {
                     games_array[i, 0] = playerId;
+                    return;
                 }
                 else if ((games_array[i, 0] != 0 && games_array[i, 1] == 0) || (games_array[i, 0] == 0 && games_array[i, 1] != 0))
                 {
                     games_array[i, 1] = playerId;
+                    return;
                 }
                 else
                 {
                     startGame(games_array[i, 0], games_array[i, 1]);
+                    return;
                 }
-                //for (int j = 0; j < games_array.GetLength(1); j++)
-                //{
-                //    //if this element is "empty"
-                //    if (games_array[i, j] == 0)
-                //    {
-                //        //add the player's id
-                //        games_array[i, j] = playerId;
-                //        return;
-                //    }
-                //    // if both cells in a row are not empty start a game
-                //    else if (games_array[i, 0] != 0 && games_array[i, 1] == 0)
-                //    {
-                //        Player p = search(games_array[i, 0]);
-                //        p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-                //        p.callback.startGameInClient(p.id);
-
-                //        p = search(games_array[i, 1]);
-                //        p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-                //        p.callback.startGameInClient(p.id);
-                //        Console.WriteLine("Players in game {0}: {1}, {2}.", i.ToString(), games_array[i, 0].ToString(),
-                //            games_array[i, 1].ToString());
-                //        return;
-                //    }
-                //    else
-                //    {
-                //        return;
-                //    }
-                //}
             }
         }
 
