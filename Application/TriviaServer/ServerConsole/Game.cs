@@ -100,9 +100,17 @@ namespace TriviaContract
         /// <summary>
         /// It starts the game after the check is complete.
         /// </summary>
-        public void startGame()
+        public void startGame(int player1, int player2)
         {
-            return;
+            Player p = search(player1);
+            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.callback.startGameInClient(p.id);
+
+            p = search(player2);
+            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.callback.startGameInClient(p.id);
+            Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(),
+                player2.ToString());
         }
 
         /// <summary>
@@ -146,34 +154,46 @@ namespace TriviaContract
             //for every element of the game_array
             for (int i = 0; i < games_array.GetLength(0); i++)
             {
-                for (int j = 0; j < games_array.GetLength(1); j++)
+                if (games_array[i, 0] == 0 && games_array[i, 1] == 0)
                 {
-                    //if this element is "empty"
-                    if (games_array[i, j] == 0)
-                    {
-                        //add the player's id
-                        games_array[i, j] = playerId;
-                        return;
-                    }
-                    // if both cells in a row are not empty start a game
-                    else if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
-                    {
-                        Player p = search(games_array[i, 0]);
-                        p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-                        p.callback.startGameInClient(p.id);
-
-                        p = search(games_array[i, 1]);
-                        p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-                        p.callback.startGameInClient(p.id);
-                        Console.WriteLine("Players in game {0}: {1}, {2}.", i.ToString(), games_array[i, 0].ToString(),
-                            games_array[i, 1].ToString());
-                        return;
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    games_array[i, 0] = playerId;
                 }
+                else if ((games_array[i, 0] != 0 && games_array[i, 1] == 0) || (games_array[i, 0] == 0 && games_array[i, 1] != 0))
+                {
+                    games_array[i, 1] = playerId;
+                }
+                else
+                {
+                    startGame(games_array[i, 0], games_array[i, 1]);
+                }
+                //for (int j = 0; j < games_array.GetLength(1); j++)
+                //{
+                //    //if this element is "empty"
+                //    if (games_array[i, j] == 0)
+                //    {
+                //        //add the player's id
+                //        games_array[i, j] = playerId;
+                //        return;
+                //    }
+                //    // if both cells in a row are not empty start a game
+                //    else if (games_array[i, 0] != 0 && games_array[i, 1] == 0)
+                //    {
+                //        Player p = search(games_array[i, 0]);
+                //        p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+                //        p.callback.startGameInClient(p.id);
+
+                //        p = search(games_array[i, 1]);
+                //        p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+                //        p.callback.startGameInClient(p.id);
+                //        Console.WriteLine("Players in game {0}: {1}, {2}.", i.ToString(), games_array[i, 0].ToString(),
+                //            games_array[i, 1].ToString());
+                //        return;
+                //    }
+                //    else
+                //    {
+                //        return;
+                //    }
+                //}
             }
         }
 
