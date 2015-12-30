@@ -13,18 +13,17 @@ namespace SimpleDatabaseApplication
 {
     public partial class Trivia_Lobby : Form
     {
-        private OleDbConnection connection;
-        public Trivia_Lobby()
+        private DataHandler dh;
+        List<string> playerslist = new List<string>();
+        
+        string user;
+        string stats;
+        public Trivia_Lobby(string username)
         {
             InitializeComponent();
-            // This is for access to an ACCESS datadase
-            String providerInfo = "Provider=Microsoft.ACE.OLEDB.12.0"; //for a accdb-database.
-
-            String applicationPath = Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("\\"));
-            String databaseInfo = "Data Source=" + applicationPath + "/TriviaDatabase.accdb";
-
-            String connectionInfo = providerInfo + ";" + databaseInfo;
-            connection = new OleDbConnection(connectionInfo);
+            dh = new DataHandler();
+            //we pass the username from form1 to this form
+            user = username;
         }
 
         private void Trivia_Lobby_Load(object sender, EventArgs e)
@@ -32,47 +31,27 @@ namespace SimpleDatabaseApplication
             try
             {
                 // here you load the players stats
-                string test = "tt11";
-                connection.Open();
-                OleDbCommand statscommand = new OleDbCommand();
-                statscommand.Connection = connection;
-                statscommand.CommandText = "select firstname, wins, draws, loses, rank from user_info where username='"+test+"'";
-
-                OleDbDataReader stastsreader = statscommand.ExecuteReader();
-                while (stastsreader.Read())
-                {
-                    lb_hello.Text = "Hello, " + stastsreader["firstname"].ToString();
-                    lb_wins.Text = "Wins: "+stastsreader["wins"].ToString();
-                    lb_draws.Text = "Draws: " + stastsreader["draws"].ToString();
-                    lb_loses.Text = "Loses: " + stastsreader["loses"].ToString();
-                    lb_rank.Text = "Rank: " + stastsreader["rank"].ToString();
-
-                }
-                connection.Close();
+                stats = dh.PlayerStats(user);
+                //lb_hello.Text = "Hello, " + stats.Substring(0,5);
+                string[] temp = stats.Split(',');
+                lb_hello.Text = "Hello, " + temp.ElementAt(0);
+                lb_wins.Text = "Wins: " + temp.ElementAt(1);
+                lb_draws.Text = "Draws: " + temp.ElementAt(2);
+                lb_loses.Text = "Loses: " + temp.ElementAt(3);
+                lb_rank.Text = "Rank: " + temp.ElementAt(4);
 
                 //here you load the list of players
                 lb_users.Items.Clear();
-                    connection.Open();
-                    OleDbCommand command = new OleDbCommand();
-                    command.Connection = connection;
-                    command.CommandText = "select username, rank, online from user_info";
+                playerslist = dh.ListOfAllPlayers();
+                foreach ( string player in playerslist)
+                {
+                    lb_users.Items.Add(player);
+                }
+                
 
-                    OleDbDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        if (reader["online"].ToString() == "0")
-                        {
-                            lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "offline");
-                        }
-                        else
-                        {
-                            lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "online");
-                        }
-                        //lb_users.Items.Add(reader["username"].ToString() +"  "+reader["rank"].ToString()+ "  " + reader["online"].ToString());
-                    }
-                connection.Close();
-                   }
-            catch(Exception ex)
+                //lb_users.Items.Add(reader["username"].ToString() +"  "+reader["rank"].ToString()+ "  " + reader["online"].ToString());
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("We are sorry.Something went wrong with the database." + ex);
             }
@@ -84,48 +63,21 @@ namespace SimpleDatabaseApplication
             try { 
             if (cb_playersonline.Checked==true)
             {
-                    //int check = 1;
-                lb_users.Items.Clear();
-                connection.Open();
-                    OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                    //it says there is a data mismach and I think I have passed the variables correctly
-                    //command.CommandText = "select username, rank, online from user_info where online='" +check+"'";
-
-                    //for now I will do it like this, I will try to fix it later on
-                    command.CommandText = "select username, rank, online from user_info";
-
-                    OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                        if (reader["online"].ToString() != "0")
-                            lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "online");
-
+                    lb_users.Items.Clear();
+                    playerslist = dh.ListOfOnlinePlayers();
+                    foreach (string player in playerslist)
+                    {
+                        lb_users.Items.Add(player);
+                    }
                 }
-                connection.Close();
-            }
             else
             {
-                lb_users.Items.Clear();
-                connection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                command.CommandText = "select username, rank, online from user_info";
-
-                OleDbDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    if (reader["online"].ToString() == "0")
+                    lb_users.Items.Clear();
+                    playerslist = dh.ListOfAllPlayers();
+                    foreach (string player in playerslist)
                     {
-                        lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "offline");
+                        lb_users.Items.Add(player);
                     }
-                    else
-                    {
-                        lb_users.Items.Add(reader["username"].ToString() + "  " + reader["rank"].ToString() + "  " + "online");
-                    }
-                    //lb_users.Items.Add(reader["username"].ToString() +"  "+reader["rank"].ToString()+ "  " + reader["online"].ToString());
-                }
-                connection.Close();
             }
         }
             catch(Exception ex)
