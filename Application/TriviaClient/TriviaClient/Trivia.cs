@@ -52,7 +52,17 @@ namespace TriviaClient
 
         private void bt_answer2_Click(object sender, EventArgs e)
         {
-            //proxy.setAnswer(1, 1);
+            proxy.setAnswer(global_id, question_counter - 1, 1);
+        }
+
+        private void bt_answer1_Click(object sender, EventArgs e)
+        {
+            proxy.setAnswer(global_id, question_counter - 1, 0);
+        }
+
+        private void bt_answer3_Click(object sender, EventArgs e)
+        {
+            proxy.setAnswer(global_id, question_counter - 1, 2);
         }
     }
 }

@@ -39,7 +39,7 @@
             this.Timer = new System.Windows.Forms.Label();
             this.lb_chat = new System.Windows.Forms.ListBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.bt_leave = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -57,6 +57,7 @@
             this.bt_answer1.TabIndex = 0;
             this.bt_answer1.Text = "button1";
             this.bt_answer1.UseVisualStyleBackColor = true;
+            this.bt_answer1.Click += new System.EventHandler(this.bt_answer1_Click);
             // 
             // bt_answer2
             // 
@@ -76,6 +77,7 @@
             this.bt_answer3.TabIndex = 2;
             this.bt_answer3.Text = "button3";
             this.bt_answer3.UseVisualStyleBackColor = true;
+            this.bt_answer3.Click += new System.EventHandler(this.bt_answer3_Click);
             // 
             // lbl_questionText
             // 
@@ -129,14 +131,14 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // bt_leave
             // 
-            this.button5.Location = new System.Drawing.Point(634, 264);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 65);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "Leave Game";
-            this.button5.UseVisualStyleBackColor = true;
+            this.bt_leave.Location = new System.Drawing.Point(634, 264);
+            this.bt_leave.Name = "bt_leave";
+            this.bt_leave.Size = new System.Drawing.Size(75, 65);
+            this.bt_leave.TabIndex = 9;
+            this.bt_leave.Text = "Leave Game";
+            this.bt_leave.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -187,7 +189,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.bt_leave);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.lb_chat);
             this.Controls.Add(this.Timer);
@@ -216,7 +218,7 @@
         private System.Windows.Forms.Label Timer;
         private System.Windows.Forms.ListBox lb_chat;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button bt_leave;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
