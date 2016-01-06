@@ -116,14 +116,9 @@ namespace TriviaContract
         /// <summary>
         /// It sends a question to a player.
         /// </summary>
-        public Question getQuestion()
+        public Question getQuestion(int counter)
         {
-            Question question = list_question.Find(q => q.id == question_counter);
-            if (question_counter % 2 == 0)
-            {
-                return question;
-            }
-            question_counter++;
+            Question question = list_question.Find(q => q.id == counter);
             return question;
         }
 
