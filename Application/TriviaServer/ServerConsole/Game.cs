@@ -145,19 +145,27 @@ namespace TriviaContract
         {
             list_players.Add(new Player(playerId));
             Console.WriteLine("Player " + playerId.ToString() + " connected.");
-
+            int c = 0;
+            bool done = false;
             //for every element of the game_array
-            for (int i = 0; i < games_array.GetLength(0); i++)
+            while (c < games_array.GetLength(0) && done == false)
             {
                 for (int j = 0; j < 2; j++)
                 {
                     //if there is no player number on cell
-                    if (games_array[i, j] == 0)
+                    if (games_array[c, j] == 0)
                     {
                         //put player number
-                        games_array[i, j] = playerId;
+                        games_array[c, j] = playerId;
+                        done = true;
+                        break;
                     }
                 }
+                c++;
+            }
+            for (int i = 0; i < games_array.GetLength(0); i++)
+            {
+                //if both columns in a row have player numbers, start a game
                 if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
                 {
                     this.startGame(games_array[i, 0], games_array[i, 1]);
