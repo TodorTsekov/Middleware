@@ -23,7 +23,7 @@ namespace TriviaContract
         {
             this.client_id = 0;
             this.question_counter = 1;
-            games_array = new int[50, 2];
+            games_array = new int[10, 2];
             for (int i = 0; i < games_array.GetLength(0); i++)
             {
                 for (int j = 0; j < games_array.GetLength(1); j++)
@@ -149,19 +149,21 @@ namespace TriviaContract
             //for every element of the game_array
             for (int i = 0; i < games_array.GetLength(0); i++)
             {
-                if (games_array[i, 0] == 0 && games_array[i, 1] == 0)
+                for (int j = 0; j < 2; j++)
                 {
-                    games_array[i, 0] = playerId;
-                    return;
+                    //if there is no player number on cell
+                    if (games_array[i, j] == 0)
+                    {
+                        //put player number
+                        games_array[i, j] = playerId;
+                    }
                 }
-                else if ((games_array[i, 0] != 0 && games_array[i, 1] == 0) || (games_array[i, 0] == 0 && games_array[i, 1] != 0))
+                if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
                 {
-                    games_array[i, 1] = playerId;
-                    return;
+                    this.startGame(games_array[i, 0], games_array[i, 1]);
                 }
                 else
                 {
-                    startGame(games_array[i, 0], games_array[i, 1]);
                     return;
                 }
             }
