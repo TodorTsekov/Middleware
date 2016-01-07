@@ -135,7 +135,13 @@ namespace TriviaContract
             Console.WriteLine("Question: " + question.questionText);
             Console.WriteLine("Player " + playerId.ToString() + " answered " + question.answer.ar_question_answers[answer]);
             Console.WriteLine("Which is " + question.answer.ar_results[answer].ToString());
+
         }
+
+        //public void outcome(Player p)
+        //{
+        //    if (p.ar_player_answers)
+        //}
 
         /// <summary>
         /// It sets that a player is ready to start a game.
