@@ -34,7 +34,7 @@
             this.bt_answer3 = new System.Windows.Forms.Button();
             this.lbl_questionText = new System.Windows.Forms.Label();
             this.lb_game_score = new System.Windows.Forms.ListBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.countdown = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Timer = new System.Windows.Forms.Label();
             this.lb_chat = new System.Windows.Forms.ListBox();
@@ -213,7 +213,7 @@
         private System.Windows.Forms.Button bt_answer3;
         private System.Windows.Forms.Label lbl_questionText;
         private System.Windows.Forms.ListBox lb_game_score;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer countdown;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Timer;
         private System.Windows.Forms.ListBox lb_chat;

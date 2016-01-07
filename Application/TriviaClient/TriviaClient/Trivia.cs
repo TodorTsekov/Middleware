@@ -53,16 +53,30 @@ namespace TriviaClient
         private void bt_answer2_Click(object sender, EventArgs e)
         {
             proxy.setAnswer(global_id, question_counter - 1, 1);
+            ask();
         }
 
         private void bt_answer1_Click(object sender, EventArgs e)
         {
             proxy.setAnswer(global_id, question_counter - 1, 0);
+            ask();
         }
 
         private void bt_answer3_Click(object sender, EventArgs e)
         {
             proxy.setAnswer(global_id, question_counter - 1, 2);
+            ask();
+        }
+
+        private void ask()
+        {
+            Question question = proxy.getQuestion(question_counter);
+            lbl_questionText.Text = question.questionText;
+
+            bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
+            bt_answer2.Text = question.answer.ar_question_answers[1].ToString();
+            bt_answer3.Text = question.answer.ar_question_answers[2].ToString();
+            question_counter++;
         }
     }
 }
