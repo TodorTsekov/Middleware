@@ -31,7 +31,7 @@ namespace TriviaClient
             global_id = id;
             this.lbl_global_id.Text = id.ToString();
             this.question_counter = 1;
-            Question question = proxy.getQuestion(question_counter);
+            Question question = proxy.getQuestion(question_counter, global_id);
             question_counter++;
             lbl_questionText.Text = question.questionText;
             bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
@@ -41,7 +41,7 @@ namespace TriviaClient
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Question question = proxy.getQuestion(question_counter);
+            Question question = proxy.getQuestion(question_counter, global_id);
             lbl_questionText.Text = question.questionText;
 
             bt_answer1.Text = question.answer.ar_question_answers[0].ToString();

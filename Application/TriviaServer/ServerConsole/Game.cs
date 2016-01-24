@@ -113,12 +113,73 @@ namespace TriviaContract
             Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(), player2.ToString());
         }
 
+        public void getResult(int player_id)
+        {
+            Player p1 = search(player_id);
+            Player p2 = null;
+            int temp_p1=0;
+            int temp_p2=0;
+            //find this player's opponent
+            for (int i = 0; i < games_array.GetLength(0); i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (games_array[i, j] == player_id)
+                    {
+                        if (j == 0)
+                        {
+                            p2 = search(games_array[i, 1]);
+                            break;
+                        }
+                        else
+                        {
+                            p2 = search(games_array[i, 0]);
+                            break;
+                        }
+                    }
+                }
+            }
+            //count score of this player
+            for (int x = 0; x < p1.ar_player_answers.GetLength(0); x++)
+            {
+                if (p1.ar_player_answers[x] == true)
+                {
+                    temp_p1 += 10;
+                }
+            }
+            //count score of other player
+            for (int x = 0; x < p2.ar_player_answers.GetLength(0); x++)
+            {
+                if (p2.ar_player_answers[x] == true)
+                {
+                    temp_p2 += 10;
+                }
+            }
+            p1.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            if (temp_p1 > temp_p2)
+            {
+                p1.callback.results(temp_p1, "win");
+            }
+            else if (temp_p1 < temp_p2)
+            {
+                p1.callback.results(temp_p1, "lost");
+            }
+            else
+            {
+                p1.callback.results(temp_p1, "draw");
+            }
+        }
+
         /// <summary>
         /// It sends a question to a player.
         /// </summary>
-        public Question getQuestion(int counter)
+        public Question getQuestion(int counter, int player_id)
         {
             Question question = list_question.Find(q => q.id == counter);
+            if (question == null)
+            {
+                getResult(player_id);
+            }
             return question;
         }
 
@@ -175,10 +236,6 @@ namespace TriviaContract
                 if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
                 {
                     this.startGame(games_array[i, 0], games_array[i, 1]);
-                }
-                else
-                {
-                    return;
                 }
             }
         }

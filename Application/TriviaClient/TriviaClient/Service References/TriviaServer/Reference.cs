@@ -296,10 +296,10 @@ namespace TriviaClient.TriviaServer {
         System.Threading.Tasks.Task startGameAsync(int player1, int player2);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getQuestion", ReplyAction="TriviaContract/IGame/getQuestionResponse")]
-        TriviaClient.TriviaServer.Question getQuestion(int counter);
+        TriviaClient.TriviaServer.Question getQuestion(int counter, int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getQuestion", ReplyAction="TriviaContract/IGame/getQuestionResponse")]
-        System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter);
+        System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter, int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/setReady", ReplyAction="TriviaContract/IGame/setReadyResponse")]
         void setReady(int playerId);
@@ -331,6 +331,9 @@ namespace TriviaClient.TriviaServer {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/startGameInClient")]
         void startGameInClient(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/results")]
+        void results(int score, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -393,12 +396,12 @@ namespace TriviaClient.TriviaServer {
             return base.Channel.startGameAsync(player1, player2);
         }
         
-        public TriviaClient.TriviaServer.Question getQuestion(int counter) {
-            return base.Channel.getQuestion(counter);
+        public TriviaClient.TriviaServer.Question getQuestion(int counter, int player_id) {
+            return base.Channel.getQuestion(counter, player_id);
         }
         
-        public System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter) {
-            return base.Channel.getQuestionAsync(counter);
+        public System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter, int player_id) {
+            return base.Channel.getQuestionAsync(counter, player_id);
         }
         
         public void setReady(int playerId) {
