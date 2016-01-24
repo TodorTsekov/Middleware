@@ -22,6 +22,7 @@ namespace TriviaClient
         static InstanceContext ctx;
         static int global_id;
         private int question_counter;
+        private int timer_counter;
         public Trivia(int id)
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace TriviaClient
             ctx = new InstanceContext(callback);
             proxy = new TriviaServer.GameClient(ctx);
             global_id = id;
+            timer_counter = 5;
             this.lbl_global_id.Text = id.ToString();
             this.question_counter = 1;
             Question question = proxy.getQuestion(question_counter, global_id);
@@ -77,6 +79,15 @@ namespace TriviaClient
             bt_answer2.Text = question.answer.ar_question_answers[1].ToString();
             bt_answer3.Text = question.answer.ar_question_answers[2].ToString();
             question_counter++;
+            timer_counter = 5;
+            lbl_countdown.Text = "5";
+            countdown.Start();
+        }
+
+        private void countdown_Tick(object sender, EventArgs e)
+        {
+            timer_counter--;
+            lbl_countdown.Text = timer_counter.ToString();
         }
     }
 }
