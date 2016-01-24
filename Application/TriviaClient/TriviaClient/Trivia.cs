@@ -70,7 +70,7 @@ namespace TriviaClient
 
         private void ask()
         {
-            Question question = proxy.getQuestion(question_counter);
+            Question question = proxy.getQuestion(question_counter, global_id);
             lbl_questionText.Text = question.questionText;
 
             bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
