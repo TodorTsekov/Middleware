@@ -91,6 +91,10 @@ namespace TriviaContract
             throw new Exception("Player not found.");
         }
 
+        /// <summary>
+        /// Sets the id of each client.
+        /// </summary>
+        /// <returns>The id of the player.</returns>
         public int setId()
         {
             client_id++;
@@ -100,6 +104,8 @@ namespace TriviaContract
         /// <summary>
         /// It starts the game after the check is complete.
         /// </summary>
+        /// <param name="player1">Id of the 1st player.</param>
+        /// <param name="player2">Id of the 2nd player.</param>
         public void startGame(int player1, int player2)
         {
             Player p = search(player1);
@@ -113,6 +119,10 @@ namespace TriviaContract
             Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(), player2.ToString());
         }
 
+        /// <summary>
+        /// Gets the result to the player.
+        /// </summary>
+        /// <param name="player_id">The player's id requesting the result.</param>
         public void getResult(int player_id)
         {
             Player p1 = search(player_id);
@@ -173,6 +183,9 @@ namespace TriviaContract
         /// <summary>
         /// It sends a question to a player.
         /// </summary>
+        /// <param name="counter">The id of the question.</param>
+        /// <param name="player_id">The id of the player asking.</param>
+        /// <returns>The question with the possible answers.</returns>
         public Question getQuestion(int counter, int player_id)
         {
             Question question = list_question.Find(q => q.id == counter);
@@ -186,8 +199,9 @@ namespace TriviaContract
         /// <summary>
         /// It receives the answer the player has supplied.
         /// </summary>
-        /// <param name="player_id">The player that supplied the answer.</param>
-        /// <param name="answer">The number of the answer the player supplied.</param>
+        /// <param name="playerId">The id of the player that gave the answer.</param>
+        /// <param name="questionId">The id of the question.</param>
+        /// <param name="answer">The id of question's answer.</param>
         public void setAnswer(int playerId, int questionId, int answer)
         {
             Player player = list_players.Find(p => p.id == playerId);
@@ -199,13 +213,8 @@ namespace TriviaContract
 
         }
 
-        //public void outcome(Player p)
-        //{
-        //    if (p.ar_player_answers)
-        //}
-
         /// <summary>
-        /// It sets that a player is ready to start a game.
+        /// It sets if a player is ready. He is added to player list.
         /// </summary>
         /// <param name="playerId">The id of the player.</param>
         public void setReady(int playerId)
