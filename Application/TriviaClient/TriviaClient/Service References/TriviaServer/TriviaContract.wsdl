@@ -65,6 +65,9 @@
   <wsdl:message name="IGame_startGameInClient_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:startGameInClient" />
   </wsdl:message>
+  <wsdl:message name="IGame_results_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:results" />
+  </wsdl:message>
   <wsdl:portType name="IGame">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="TriviaContract/IGame/GetData" message="tns:IGame_GetData_InputMessage" />
@@ -104,6 +107,9 @@
     </wsdl:operation>
     <wsdl:operation name="startGameInClient">
       <wsdl:output wsaw:Action="TriviaContract/IGame/startGameInClient" message="tns:IGame_startGameInClient_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="results">
+      <wsdl:output wsaw:Action="TriviaContract/IGame/results" message="tns:IGame_results_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

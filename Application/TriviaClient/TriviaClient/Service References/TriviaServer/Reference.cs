@@ -290,16 +290,16 @@ namespace TriviaClient.TriviaServer {
         System.Threading.Tasks.Task<int> setIdAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/startGame", ReplyAction="TriviaContract/IGame/startGameResponse")]
-        void startGame();
+        void startGame(int player1, int player2);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/startGame", ReplyAction="TriviaContract/IGame/startGameResponse")]
-        System.Threading.Tasks.Task startGameAsync();
+        System.Threading.Tasks.Task startGameAsync(int player1, int player2);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getQuestion", ReplyAction="TriviaContract/IGame/getQuestionResponse")]
-        TriviaClient.TriviaServer.Question getQuestion();
+        TriviaClient.TriviaServer.Question getQuestion(int counter, int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getQuestion", ReplyAction="TriviaContract/IGame/getQuestionResponse")]
-        System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync();
+        System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter, int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/setReady", ReplyAction="TriviaContract/IGame/setReadyResponse")]
         void setReady(int playerId);
@@ -308,10 +308,10 @@ namespace TriviaClient.TriviaServer {
         System.Threading.Tasks.Task setReadyAsync(int playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/setAnswer", ReplyAction="TriviaContract/IGame/setAnswerResponse")]
-        void setAnswer(int playerId, int answer);
+        void setAnswer(int playerId, int questionId, int answer);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/setAnswer", ReplyAction="TriviaContract/IGame/setAnswerResponse")]
-        System.Threading.Tasks.Task setAnswerAsync(int playerId, int answer);
+        System.Threading.Tasks.Task setAnswerAsync(int playerId, int questionId, int answer);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/leave", ReplyAction="TriviaContract/IGame/leaveResponse")]
         void leave(int playerId);
@@ -331,6 +331,9 @@ namespace TriviaClient.TriviaServer {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/startGameInClient")]
         void startGameInClient(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/results")]
+        void results(int score, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -385,20 +388,20 @@ namespace TriviaClient.TriviaServer {
             return base.Channel.setIdAsync();
         }
         
-        public void startGame() {
-            base.Channel.startGame();
+        public void startGame(int player1, int player2) {
+            base.Channel.startGame(player1, player2);
         }
         
-        public System.Threading.Tasks.Task startGameAsync() {
-            return base.Channel.startGameAsync();
+        public System.Threading.Tasks.Task startGameAsync(int player1, int player2) {
+            return base.Channel.startGameAsync(player1, player2);
         }
         
-        public TriviaClient.TriviaServer.Question getQuestion() {
-            return base.Channel.getQuestion();
+        public TriviaClient.TriviaServer.Question getQuestion(int counter, int player_id) {
+            return base.Channel.getQuestion(counter, player_id);
         }
         
-        public System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync() {
-            return base.Channel.getQuestionAsync();
+        public System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter, int player_id) {
+            return base.Channel.getQuestionAsync(counter, player_id);
         }
         
         public void setReady(int playerId) {
@@ -409,12 +412,12 @@ namespace TriviaClient.TriviaServer {
             return base.Channel.setReadyAsync(playerId);
         }
         
-        public void setAnswer(int playerId, int answer) {
-            base.Channel.setAnswer(playerId, answer);
+        public void setAnswer(int playerId, int questionId, int answer) {
+            base.Channel.setAnswer(playerId, questionId, answer);
         }
         
-        public System.Threading.Tasks.Task setAnswerAsync(int playerId, int answer) {
-            return base.Channel.setAnswerAsync(playerId, answer);
+        public System.Threading.Tasks.Task setAnswerAsync(int playerId, int questionId, int answer) {
+            return base.Channel.setAnswerAsync(playerId, questionId, answer);
         }
         
         public void leave(int playerId) {

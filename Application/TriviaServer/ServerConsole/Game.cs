@@ -15,14 +15,23 @@ namespace TriviaContract
     {
         int client_id;
         int question_counter;
+        int[,] games_array; 
         List<Player> list_players;
         List<Question> list_question;
 
         public Game()
         {
             this.client_id = 0;
-            this.list_players = new List<Player>();
             this.question_counter = 1;
+            games_array = new int[10, 2];
+            for (int i = 0; i < games_array.GetLength(0); i++)
+            {
+                for (int j = 0; j < games_array.GetLength(1); j++)
+                {
+                    games_array.SetValue(0, i, j);
+                }
+            }
+            this.list_players = new List<Player>();
             populate();
         }
 
@@ -82,6 +91,10 @@ namespace TriviaContract
             throw new Exception("Player not found.");
         }
 
+        /// <summary>
+        /// Sets the id of each client.
+        /// </summary>
+        /// <returns>The id of the player.</returns>
         public int setId()
         {
             client_id++;
@@ -91,26 +104,104 @@ namespace TriviaContract
         /// <summary>
         /// It starts the game after the check is complete.
         /// </summary>
-        public void startGame()
+        /// <param name="player1">Id of the 1st player.</param>
+        /// <param name="player2">Id of the 2nd player.</param>
+        public void startGame(int player1, int player2)
         {
-            return;
+            Player p = search(player1);
+            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.callback.startGameInClient(p.id);
+            p = null;
+            p = search(player2);
+            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.callback.startGameInClient(p.id);
+
+            Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(), player2.ToString());
+        }
+
+        /// <summary>
+        /// Gets the result to the player.
+        /// </summary>
+        /// <param name="player_id">The player's id requesting the result.</param>
+        public void getResult(int player_id)
+        {
+            Player p1 = search(player_id);
+            Player p2 = null;
+            int temp_p1=0;
+            int temp_p2=0;
+            //find this player's opponent
+            for (int i = 0; i < games_array.GetLength(0); i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (games_array[i, j] == player_id)
+                    {
+                        if (j == 0)
+                        {
+                            p2 = search(games_array[i, 1]);
+                            break;
+                        }
+                        else
+                        {
+                            p2 = search(games_array[i, 0]);
+                            break;
+                        }
+                    }
+                }
+            }
+            //count score of this player
+            for (int x = 0; x < p1.ar_player_answers.GetLength(0); x++)
+            {
+                if (p1.ar_player_answers[x] == true)
+                {
+                    temp_p1 += 10;
+                }
+            }
+            //count score of other player
+            for (int x = 0; x < p2.ar_player_answers.GetLength(0); x++)
+            {
+                if (p2.ar_player_answers[x] == true)
+                {
+                    temp_p2 += 10;
+                }
+            }
+            p1.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            if (temp_p1 > temp_p2)
+            {
+                p1.callback.results(temp_p1, "win");
+            }
+            else if (temp_p1 < temp_p2)
+            {
+                p1.callback.results(temp_p1, "lost");
+            }
+            else
+            {
+                p1.callback.results(temp_p1, "draw");
+            }
         }
 
         /// <summary>
         /// It sends a question to a player.
         /// </summary>
-        public Question getQuestion()
+        /// <param name="counter">The id of the question.</param>
+        /// <param name="player_id">The id of the player asking.</param>
+        /// <returns>The question with the possible answers.</returns>
+        public Question getQuestion(int counter, int player_id)
         {
-            Question question = list_question.Find(q => q.id == question_counter);
-            question_counter++;
+            Question question = list_question.Find(q => q.id == counter);
+            if (question == null)
+            {
+                getResult(player_id);
+            }
             return question;
         }
 
         /// <summary>
         /// It receives the answer the player has supplied.
         /// </summary>
-        /// <param name="player_id">The player that supplied the answer.</param>
-        /// <param name="answer">The number of the answer the player supplied.</param>
+        /// <param name="playerId">The id of the player that gave the answer.</param>
+        /// <param name="questionId">The id of the question.</param>
+        /// <param name="answer">The id of question's answer.</param>
         public void setAnswer(int playerId, int questionId, int answer)
         {
             Player player = list_players.Find(p => p.id == playerId);
@@ -119,22 +210,41 @@ namespace TriviaContract
             Console.WriteLine("Question: " + question.questionText);
             Console.WriteLine("Player " + playerId.ToString() + " answered " + question.answer.ar_question_answers[answer]);
             Console.WriteLine("Which is " + question.answer.ar_results[answer].ToString());
+
         }
 
         /// <summary>
-        /// It sets that a player is ready to start a game.
+        /// It sets if a player is ready. He is added to player list.
         /// </summary>
         /// <param name="playerId">The id of the player.</param>
         public void setReady(int playerId)
         {
             list_players.Add(new Player(playerId));
             Console.WriteLine("Player " + playerId.ToString() + " connected.");
-            if (list_players.Count() == 2)
+            int c = 0;
+            bool done = false;
+            //for every element of the game_array
+            while (c < games_array.GetLength(0) && done == false)
             {
-                foreach (Player p in list_players)
+                for (int j = 0; j < 2; j++)
                 {
-                    p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-                    p.callback.startGameInClient(p.id);
+                    //if there is no player number on cell
+                    if (games_array[c, j] == 0)
+                    {
+                        //put player number
+                        games_array[c, j] = playerId;
+                        done = true;
+                        break;
+                    }
+                }
+                c++;
+            }
+            for (int i = 0; i < games_array.GetLength(0); i++)
+            {
+                //if both columns in a row have player numbers, start a game
+                if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
+                {
+                    this.startGame(games_array[i, 0], games_array[i, 1]);
                 }
             }
         }

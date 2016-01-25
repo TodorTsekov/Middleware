@@ -21,15 +21,20 @@ namespace TriviaClient
         /// </summary>
         static InstanceContext ctx;
         static int global_id;
+        private int question_counter;
+        private int timer_counter;
         public Trivia(int id)
         {
             InitializeComponent();
-            callback=new Game();
+            callback = new Game();
             ctx = new InstanceContext(callback);
             proxy = new TriviaServer.GameClient(ctx);
             global_id = id;
+            timer_counter = 5;
             this.lbl_global_id.Text = id.ToString();
-            Question question = proxy.getQuestion();
+            this.question_counter = 1;
+            Question question = proxy.getQuestion(question_counter, global_id);
+            question_counter++;
             lbl_questionText.Text = question.questionText;
             bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
             bt_answer2.Text = question.answer.ar_question_answers[1].ToString();
@@ -38,17 +43,51 @@ namespace TriviaClient
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Question question = proxy.getQuestion();
+            Question question = proxy.getQuestion(question_counter, global_id);
             lbl_questionText.Text = question.questionText;
 
             bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
             bt_answer2.Text = question.answer.ar_question_answers[1].ToString();
             bt_answer3.Text = question.answer.ar_question_answers[2].ToString();
+            question_counter++;
         }
 
         private void bt_answer2_Click(object sender, EventArgs e)
         {
-            proxy.setAnswer(1, 1);
+            proxy.setAnswer(global_id, question_counter - 1, 1);
+            ask();
+        }
+
+        private void bt_answer1_Click(object sender, EventArgs e)
+        {
+            proxy.setAnswer(global_id, question_counter - 1, 0);
+            ask();
+        }
+
+        private void bt_answer3_Click(object sender, EventArgs e)
+        {
+            proxy.setAnswer(global_id, question_counter - 1, 2);
+            ask();
+        }
+
+        private void ask()
+        {
+            Question question = proxy.getQuestion(question_counter, global_id);
+            lbl_questionText.Text = question.questionText;
+
+            bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
+            bt_answer2.Text = question.answer.ar_question_answers[1].ToString();
+            bt_answer3.Text = question.answer.ar_question_answers[2].ToString();
+            question_counter++;
+            timer_counter = 5;
+            lbl_countdown.Text = "5";
+            countdown.Start();
+        }
+
+        private void countdown_Tick(object sender, EventArgs e)
+        {
+            timer_counter--;
+            lbl_countdown.Text = timer_counter.ToString();
         }
     }
 }
