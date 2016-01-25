@@ -26,7 +26,7 @@ namespace TriviaClient
         public Trivia(int id)
         {
             InitializeComponent();
-            callback=new Game();
+            callback = new Game();
             ctx = new InstanceContext(callback);
             proxy = new TriviaServer.GameClient(ctx);
             global_id = id;
