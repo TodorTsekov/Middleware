@@ -54,6 +54,18 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="getResult">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="player_id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getResultResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="getQuestion">
     <xs:complexType>
       <xs:sequence>
@@ -129,6 +141,7 @@
   <xs:element name="results">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="playerId" type="xs:int" />
         <xs:element minOccurs="0" name="score" type="xs:int" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>

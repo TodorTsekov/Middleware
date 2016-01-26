@@ -32,6 +32,12 @@
   <wsdl:message name="IGame_startGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:startGameResponse" />
   </wsdl:message>
+  <wsdl:message name="IGame_getResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:getResult" />
+  </wsdl:message>
+  <wsdl:message name="IGame_getResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getResultResponse" />
+  </wsdl:message>
   <wsdl:message name="IGame_getQuestion_InputMessage">
     <wsdl:part name="parameters" element="tns:getQuestion" />
   </wsdl:message>
@@ -84,6 +90,10 @@
     <wsdl:operation name="startGame">
       <wsdl:input wsaw:Action="TriviaContract/IGame/startGame" message="tns:IGame_startGame_InputMessage" />
       <wsdl:output wsaw:Action="TriviaContract/IGame/startGameResponse" message="tns:IGame_startGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getResult">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/getResult" message="tns:IGame_getResult_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/getResultResponse" message="tns:IGame_getResult_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="getQuestion">
       <wsdl:input wsaw:Action="TriviaContract/IGame/getQuestion" message="tns:IGame_getQuestion_InputMessage" />

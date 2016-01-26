@@ -108,6 +108,16 @@ namespace TriviaContract
         /// <param name="player2">Id of the 2nd player.</param>
         public void startGame(int player1, int player2)
         {
+            //for (int i = 0; i < games_array.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < 2; j++)
+            //    {
+            //        if (games_array[i, j] == player1 || games_array[i, j] == player2)
+            //        {
+            //            return;
+            //        }
+            //    }
+            //}
             Player p = search(player1);
             p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             p.callback.startGameInClient(p.id);
@@ -170,22 +180,24 @@ namespace TriviaContract
                     temp_p2 += 10;
                 }
             }
+
+            //delicer the reults
             p1.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             p2.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             if (temp_p1 > temp_p2)
             {
-                p1.callback.results(temp_p1, "win");
-                p2.callback.results(temp_p2, "lost");
+                p1.callback.results(p1.id, temp_p1, "win");
+                p2.callback.results(p2.id, temp_p2, "lost");
             }
             else if (temp_p1 < temp_p2)
             {
-                p1.callback.results(temp_p1, "lost");
-                p2.callback.results(temp_p2, "win");
+                p1.callback.results(p1.id, temp_p1, "lost");
+                p2.callback.results(p2.id, temp_p2, "win");
             }
             else
             {
-                p1.callback.results(temp_p1, "draw");
-                p2.callback.results(temp_p2, "draw");
+                p1.callback.results(p1.id, temp_p1, "draw");
+                p2.callback.results(p2.id, temp_p2, "draw");
             }
         }
 
@@ -254,6 +266,7 @@ namespace TriviaContract
                 if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
                 {
                     this.startGame(games_array[i, 0], games_array[i, 1]);
+                    break;
                 }
             }
         }
