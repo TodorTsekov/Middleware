@@ -148,7 +148,12 @@ namespace TriviaContract
                         }
                     }
                 }
+                if (p1 != null && p2 != null)
+                {
+                    break;
+                }
             }
+
             //count score of this player
             for (int x = 0; x < p1.ar_player_answers.GetLength(0); x++)
             {
@@ -166,17 +171,21 @@ namespace TriviaContract
                 }
             }
             p1.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p2.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             if (temp_p1 > temp_p2)
             {
                 p1.callback.results(temp_p1, "win");
+                p2.callback.results(temp_p2, "lost");
             }
             else if (temp_p1 < temp_p2)
             {
                 p1.callback.results(temp_p1, "lost");
+                p2.callback.results(temp_p2, "win");
             }
             else
             {
                 p1.callback.results(temp_p1, "draw");
+                p2.callback.results(temp_p2, "draw");
             }
         }
 
@@ -255,7 +264,21 @@ namespace TriviaContract
         /// <param name="playerId">The id of the player.</param>
         public void leave(int playerId)
         {
-            return;
+            Player p = search(playerId);
+            if (p != null)
+            {
+                list_players.Remove(p);
+                for (int i = 0; i < games_array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (games_array[i, j] == playerId)
+                        {
+                            games_array[i, j] = 0;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
