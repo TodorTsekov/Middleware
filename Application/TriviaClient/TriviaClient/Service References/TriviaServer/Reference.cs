@@ -295,6 +295,12 @@ namespace TriviaClient.TriviaServer {
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/startGame", ReplyAction="TriviaContract/IGame/startGameResponse")]
         System.Threading.Tasks.Task startGameAsync(int player1, int player2);
         
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getResult", ReplyAction="TriviaContract/IGame/getResultResponse")]
+        void getResult(int player_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getResult", ReplyAction="TriviaContract/IGame/getResultResponse")]
+        System.Threading.Tasks.Task getResultAsync(int player_id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getQuestion", ReplyAction="TriviaContract/IGame/getQuestionResponse")]
         TriviaClient.TriviaServer.Question getQuestion(int counter, int player_id);
         
@@ -333,7 +339,7 @@ namespace TriviaClient.TriviaServer {
         void startGameInClient(int id);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/results")]
-        void results(int score, string message);
+        void results(int playerId, int score, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -394,6 +400,14 @@ namespace TriviaClient.TriviaServer {
         
         public System.Threading.Tasks.Task startGameAsync(int player1, int player2) {
             return base.Channel.startGameAsync(player1, player2);
+        }
+        
+        public void getResult(int player_id) {
+            base.Channel.getResult(player_id);
+        }
+        
+        public System.Threading.Tasks.Task getResultAsync(int player_id) {
+            return base.Channel.getResultAsync(player_id);
         }
         
         public TriviaClient.TriviaServer.Question getQuestion(int counter, int player_id) {
