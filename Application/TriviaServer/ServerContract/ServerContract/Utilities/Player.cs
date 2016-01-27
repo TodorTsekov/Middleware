@@ -15,7 +15,8 @@ namespace TriviaContract
         public int id;
         private int counter;
         public bool[] ar_player_answers;
-        public IGameCallback callback { get; set; }
+        public IGameCallback gameCallback { get; set; }
+        public IChatCallback chatCallback { get; set; }
 
         public Player()
         {

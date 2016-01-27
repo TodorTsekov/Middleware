@@ -11,22 +11,20 @@ namespace TriviaContract
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class Game : TriviaContract.IGame, TriviaContract.ILogin
+    public class Game : TriviaContract.IGame, TriviaContract.ILogin, TriviaContract.IChat
     {
         int client_id;
-        int question_counter;
-        int[,] games_array; 
+        int[,] games_array;
         List<Player> list_players;
         List<Question> list_question;
         //login
-        DataHelper dataHelper;
+        TriviaContract.DataHelper dataHelper;
        
         List<string> playerslist = new List<string>();
 
         public Game()
         {
             this.client_id = 0;
-            this.question_counter = 1;
             games_array = new int[10, 2];
             for (int i = 0; i < games_array.GetLength(0); i++)
             {
@@ -85,6 +83,36 @@ namespace TriviaContract
             return composite;
         }
 
+        public void sendMessage(int sender, string message)
+        {
+            int i = 0;
+            bool found = false;
+            Player receiver = null;
+            //find the other player of the game
+            while (i < games_array.GetLength(0) && found == false)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (games_array[i, j] == sender)
+                    {
+                        if (j == 0)
+                        {
+                            receiver = search(games_array[i, 1]);
+                        }
+                        else
+                        {
+                            receiver = search(games_array[i, 0]);
+                        }
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            //send the message
+            receiver.chatCallback = OperationContext.Current.GetCallbackChannel<IChatCallback>();
+            receiver.chatCallback.getMessage(sender, message);
+        }
+
         private Player search(int id)
         {
             foreach (Player p in list_players)
@@ -115,12 +143,12 @@ namespace TriviaContract
         public void startGame(int player1, int player2)
         {
             Player p = search(player1);
-            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-            p.callback.startGameInClient(p.id);
+            p.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.gameCallback.startGameInClient(p.id);
             p = null;
             p = search(player2);
-            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-            p.callback.startGameInClient(p.id);
+            p.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.gameCallback.startGameInClient(p.id);
 
             Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(), player2.ToString());
         }
@@ -178,22 +206,22 @@ namespace TriviaContract
             }
 
             //delicer the reults
-            p1.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-            p2.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p1.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p2.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             if (temp_p1 > temp_p2)
             {
-                p1.callback.results(p1.id, temp_p1, "win");
-                p2.callback.results(p2.id, temp_p2, "lost");
+                p1.gameCallback.results(p1.id, temp_p1, "win");
+                p2.gameCallback.results(p2.id, temp_p2, "lost");
             }
             else if (temp_p1 < temp_p2)
             {
-                p1.callback.results(p1.id, temp_p1, "lost");
-                p2.callback.results(p2.id, temp_p2, "win");
+                p1.gameCallback.results(p1.id, temp_p1, "lost");
+                p2.gameCallback.results(p2.id, temp_p2, "win");
             }
             else
             {
-                p1.callback.results(p1.id, temp_p1, "draw");
-                p2.callback.results(p2.id, temp_p2, "draw");
+                p1.gameCallback.results(p1.id, temp_p1, "draw");
+                p2.gameCallback.results(p2.id, temp_p2, "draw");
             }
         }
 
