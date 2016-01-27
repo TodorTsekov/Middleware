@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="LoginContract" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="LoginContract" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="LoginContract/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/ChatServiceMDW/Service1/?xsd=xsd2" namespace="LoginContract" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/ChatServiceMDW/Service1/?xsd=xsd0" namespace="ChatCallbacks" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/ChatServiceMDW/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/ChatServiceMDW/Service1/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILogin_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_CreateAnAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAnAccount" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_CreateAnAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAnAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_ListOfOnlinePlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfOnlinePlayers" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_ListOfOnlinePlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfOnlinePlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_ListOfAllPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfAllPlayers" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_ListOfAllPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfAllPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_PlayerStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerStats" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_PlayerStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_PlayerOffline_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerOffline" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_PlayerOffline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerOfflineResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ILogin">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="LoginContract/ILogin/Login" message="tns:ILogin_Login_InputMessage" />
+      <wsdl:output wsaw:Action="LoginContract/ILogin/LoginResponse" message="tns:ILogin_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAnAccount">
+      <wsdl:input wsaw:Action="LoginContract/ILogin/CreateAnAccount" message="tns:ILogin_CreateAnAccount_InputMessage" />
+      <wsdl:output wsaw:Action="LoginContract/ILogin/CreateAnAccountResponse" message="tns:ILogin_CreateAnAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfOnlinePlayers">
+      <wsdl:input wsaw:Action="LoginContract/ILogin/ListOfOnlinePlayers" message="tns:ILogin_ListOfOnlinePlayers_InputMessage" />
+      <wsdl:output wsaw:Action="LoginContract/ILogin/ListOfOnlinePlayersResponse" message="tns:ILogin_ListOfOnlinePlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfAllPlayers">
+      <wsdl:input wsaw:Action="LoginContract/ILogin/ListOfAllPlayers" message="tns:ILogin_ListOfAllPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="LoginContract/ILogin/ListOfAllPlayersResponse" message="tns:ILogin_ListOfAllPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerStats">
+      <wsdl:input wsaw:Action="LoginContract/ILogin/PlayerStats" message="tns:ILogin_PlayerStats_InputMessage" />
+      <wsdl:output wsaw:Action="LoginContract/ILogin/PlayerStatsResponse" message="tns:ILogin_PlayerStats_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerOffline">
+      <wsdl:input wsaw:Action="LoginContract/ILogin/PlayerOffline" message="tns:ILogin_PlayerOffline_InputMessage" />
+      <wsdl:output wsaw:Action="LoginContract/ILogin/PlayerOfflineResponse" message="tns:ILogin_PlayerOffline_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
