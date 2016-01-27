@@ -5,20 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using TriviaClient.TriviaServer;
+using System.Windows.Forms;
 
 namespace TriviaClient
 {
     public class Game : IGameCallback
     {
-        public int id;
-
-        /// <summary>
-        /// It sets the unique id on the client.
-        /// </summary>
-        public void setId()
-        {
-            return;
-        }
 
         /// <summary>
         /// It notifies the client that the game starts.
@@ -27,6 +19,15 @@ namespace TriviaClient
         {
             Trivia t = new Trivia(id);
             t.Show();
+        }
+
+        public void results(int playerId, int score, string message)
+        {
+            if (MessageBox.Show("Player " + playerId.ToString() + " " + message + " the game. Your score: " + score.ToString(), "Results",
+                MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+            {
+                Form.ActiveForm.Close();
+            }
         }
 
         /// <summary>

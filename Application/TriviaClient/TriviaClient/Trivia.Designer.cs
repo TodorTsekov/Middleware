@@ -35,18 +35,19 @@
             this.lbl_questionText = new System.Windows.Forms.Label();
             this.lb_game_score = new System.Windows.Forms.ListBox();
             this.countdown = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Timer = new System.Windows.Forms.Label();
             this.lb_chat = new System.Windows.Forms.ListBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.bt_leave = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbl_global_id = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.lbl_countdown = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // bt_answer1
@@ -96,13 +97,10 @@
             this.lb_game_score.Size = new System.Drawing.Size(120, 95);
             this.lb_game_score.TabIndex = 4;
             // 
-            // pictureBox1
+            // countdown
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(52, 39);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.countdown.Interval = 1000;
+            this.countdown.Tick += new System.EventHandler(this.countdown_Tick);
             // 
             // Timer
             // 
@@ -116,20 +114,10 @@
             // lb_chat
             // 
             this.lb_chat.FormattingEnabled = true;
-            this.lb_chat.Location = new System.Drawing.Point(15, 241);
+            this.lb_chat.Location = new System.Drawing.Point(6, 19);
             this.lb_chat.Name = "lb_chat";
             this.lb_chat.Size = new System.Drawing.Size(407, 95);
             this.lb_chat.TabIndex = 7;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(483, 264);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(73, 62);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Pause game";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // bt_leave
             // 
@@ -139,15 +127,17 @@
             this.bt_leave.TabIndex = 9;
             this.bt_leave.Text = "Leave Game";
             this.bt_leave.UseVisualStyleBackColor = true;
+            this.bt_leave.Click += new System.EventHandler(this.bt_leave_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(236, 353);
+            this.button6.Location = new System.Drawing.Point(327, 120);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(186, 46);
+            this.button6.Size = new System.Drawing.Size(86, 46);
             this.button6.TabIndex = 10;
-            this.button6.Text = "Send Message";
+            this.button6.Text = "Send";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // groupBox1
             // 
@@ -180,27 +170,55 @@
             this.lbl_global_id.TabIndex = 13;
             this.lbl_global_id.Text = "label1";
             // 
+            // lbl_countdown
+            // 
+            this.lbl_countdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_countdown.Location = new System.Drawing.Point(9, 22);
+            this.lbl_countdown.Name = "lbl_countdown";
+            this.lbl_countdown.Size = new System.Drawing.Size(45, 53);
+            this.lbl_countdown.TabIndex = 14;
+            this.lbl_countdown.Text = "5";
+            this.lbl_countdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 134);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(315, 20);
+            this.textBox1.TabIndex = 15;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lb_chat);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.button6);
+            this.groupBox3.Location = new System.Drawing.Point(15, 253);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(426, 181);
+            this.groupBox3.TabIndex = 16;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Chat";
+            // 
             // Trivia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 446);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.lbl_countdown);
             this.Controls.Add(this.lbl_global_id);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.bt_leave);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.lb_chat);
             this.Controls.Add(this.Timer);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lb_game_score);
             this.Name = "Trivia";
             this.Text = "Trivia";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,14 +232,15 @@
         private System.Windows.Forms.Label lbl_questionText;
         private System.Windows.Forms.ListBox lb_game_score;
         private System.Windows.Forms.Timer countdown;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Timer;
         private System.Windows.Forms.ListBox lb_chat;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button bt_leave;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbl_global_id;
+        private System.Windows.Forms.Label lbl_countdown;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

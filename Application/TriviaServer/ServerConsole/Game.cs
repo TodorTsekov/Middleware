@@ -11,18 +11,20 @@ namespace TriviaContract
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class Game : TriviaContract.IGame
+    public class Game : TriviaContract.IGame, TriviaContract.ILogin, TriviaContract.IChat
     {
         int client_id;
-        int question_counter;
-        int[,] games_array; 
+        int[,] games_array;
         List<Player> list_players;
         List<Question> list_question;
+        //login
+        TriviaContract.DataHelper dataHelper;
+       
+        List<string> playerslist = new List<string>();
 
         public Game()
         {
             this.client_id = 0;
-            this.question_counter = 1;
             games_array = new int[10, 2];
             for (int i = 0; i < games_array.GetLength(0); i++)
             {
@@ -33,6 +35,8 @@ namespace TriviaContract
             }
             this.list_players = new List<Player>();
             populate();
+            //login
+            dataHelper = new DataHelper();
         }
 
         private void populate()
@@ -79,6 +83,36 @@ namespace TriviaContract
             return composite;
         }
 
+        public void sendMessage(int sender, string message)
+        {
+            int i = 0;
+            bool found = false;
+            Player receiver = null;
+            //find the other player of the game
+            while (i < games_array.GetLength(0) && found == false)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (games_array[i, j] == sender)
+                    {
+                        if (j == 0)
+                        {
+                            receiver = search(games_array[i, 1]);
+                        }
+                        else
+                        {
+                            receiver = search(games_array[i, 0]);
+                        }
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            //send the message
+            receiver.chatCallback = OperationContext.Current.GetCallbackChannel<IChatCallback>();
+            receiver.chatCallback.getMessage(sender, message);
+        }
+
         private Player search(int id)
         {
             foreach (Player p in list_players)
@@ -91,6 +125,10 @@ namespace TriviaContract
             throw new Exception("Player not found.");
         }
 
+        /// <summary>
+        /// Sets the id of each client.
+        /// </summary>
+        /// <returns>The id of the player.</returns>
         public int setId()
         {
             client_id++;
@@ -100,33 +138,115 @@ namespace TriviaContract
         /// <summary>
         /// It starts the game after the check is complete.
         /// </summary>
+        /// <param name="player1">Id of the 1st player.</param>
+        /// <param name="player2">Id of the 2nd player.</param>
         public void startGame(int player1, int player2)
         {
             Player p = search(player1);
-            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-            p.callback.startGameInClient(p.id);
+            p.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.gameCallback.startGameInClient(p.id);
             p = null;
             p = search(player2);
-            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-            p.callback.startGameInClient(p.id);
+            p.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.gameCallback.startGameInClient(p.id);
 
             Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(), player2.ToString());
         }
 
         /// <summary>
+        /// Gets the result to the player.
+        /// </summary>
+        /// <param name="player_id">The player's id requesting the result.</param>
+        public void getResult(int player_id)
+        {
+            Player p1 = search(player_id);
+            Player p2 = null;
+            int temp_p1=0;
+            int temp_p2=0;
+            //find this player's opponent
+            for (int i = 0; i < games_array.GetLength(0); i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (games_array[i, j] == player_id)
+                    {
+                        if (j == 0)
+                        {
+                            p2 = search(games_array[i, 1]);
+                            break;
+                        }
+                        else
+                        {
+                            p2 = search(games_array[i, 0]);
+                            break;
+                        }
+                    }
+                }
+                if (p1 != null && p2 != null)
+                {
+                    break;
+                }
+            }
+
+            //count score of this player
+            for (int x = 0; x < p1.ar_player_answers.GetLength(0); x++)
+            {
+                if (p1.ar_player_answers[x] == true)
+                {
+                    temp_p1 += 10;
+                }
+            }
+            //count score of other player
+            for (int x = 0; x < p2.ar_player_answers.GetLength(0); x++)
+            {
+                if (p2.ar_player_answers[x] == true)
+                {
+                    temp_p2 += 10;
+                }
+            }
+
+            //delicer the reults
+            p1.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p2.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            if (temp_p1 > temp_p2)
+            {
+                p1.gameCallback.results(p1.id, temp_p1, "win");
+                p2.gameCallback.results(p2.id, temp_p2, "lost");
+            }
+            else if (temp_p1 < temp_p2)
+            {
+                p1.gameCallback.results(p1.id, temp_p1, "lost");
+                p2.gameCallback.results(p2.id, temp_p2, "win");
+            }
+            else
+            {
+                p1.gameCallback.results(p1.id, temp_p1, "draw");
+                p2.gameCallback.results(p2.id, temp_p2, "draw");
+            }
+        }
+
+        /// <summary>
         /// It sends a question to a player.
         /// </summary>
-        public Question getQuestion(int counter)
+        /// <param name="counter">The id of the question.</param>
+        /// <param name="player_id">The id of the player asking.</param>
+        /// <returns>The question with the possible answers.</returns>
+        public Question getQuestion(int counter, int player_id)
         {
             Question question = list_question.Find(q => q.id == counter);
+            if (question == null)
+            {
+                getResult(player_id);
+            }
             return question;
         }
 
         /// <summary>
         /// It receives the answer the player has supplied.
         /// </summary>
-        /// <param name="player_id">The player that supplied the answer.</param>
-        /// <param name="answer">The number of the answer the player supplied.</param>
+        /// <param name="playerId">The id of the player that gave the answer.</param>
+        /// <param name="questionId">The id of the question.</param>
+        /// <param name="answer">The id of question's answer.</param>
         public void setAnswer(int playerId, int questionId, int answer)
         {
             Player player = list_players.Find(p => p.id == playerId);
@@ -138,13 +258,8 @@ namespace TriviaContract
 
         }
 
-        //public void outcome(Player p)
-        //{
-        //    if (p.ar_player_answers)
-        //}
-
         /// <summary>
-        /// It sets that a player is ready to start a game.
+        /// It sets if a player is ready. He is added to player list.
         /// </summary>
         /// <param name="playerId">The id of the player.</param>
         public void setReady(int playerId)
@@ -175,10 +290,7 @@ namespace TriviaContract
                 if (games_array[i, 0] != 0 && games_array[i, 1] != 0)
                 {
                     this.startGame(games_array[i, 0], games_array[i, 1]);
-                }
-                else
-                {
-                    return;
+                    break;
                 }
             }
         }
@@ -189,7 +301,21 @@ namespace TriviaContract
         /// <param name="playerId">The id of the player.</param>
         public void leave(int playerId)
         {
-            return;
+            Player p = search(playerId);
+            if (p != null)
+            {
+                list_players.Remove(p);
+                for (int i = 0; i < games_array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (games_array[i, j] == playerId)
+                        {
+                            games_array[i, j] = 0;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -199,6 +325,47 @@ namespace TriviaContract
         public void restart(int playerId)
         {
             return;
+        }
+
+        //Login
+
+        public int Login(string username, string pass)
+        {
+            int temp;
+            temp = dataHelper.LogIn(username, pass);
+            return temp;
+        }
+
+
+        public int CreateAnAccount(string username, string password, string firstname)
+        {
+            int temp;
+            temp = dataHelper.CreateAnAccount(username, password, firstname);
+            return temp;
+        }
+
+        public List<string> ListOfOnlinePlayers()
+        {
+            playerslist = dataHelper.ListOfOnlinePlayers();
+            return playerslist;
+        }
+
+        public List<string> ListOfAllPlayers()
+        {
+            playerslist = dataHelper.ListOfAllPlayers();
+            return playerslist;
+        }
+
+        public string PlayerStats(string username)
+        {
+            string temp;
+            temp = dataHelper.PlayerStats(username);
+            return temp;
+        }
+
+        public void PlayerOffline(string username, int offline)
+        {
+            dataHelper.PlayerOffline(username, offline);
         }
     }
 }

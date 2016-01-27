@@ -268,6 +268,123 @@ namespace TriviaClient.TriviaServer {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="TriviaContract", ConfigurationName="TriviaServer.ILogin")]
+    public interface ILogin {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/Login", ReplyAction="TriviaContract/ILogin/LoginResponse")]
+        int Login(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/Login", ReplyAction="TriviaContract/ILogin/LoginResponse")]
+        System.Threading.Tasks.Task<int> LoginAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/CreateAnAccount", ReplyAction="TriviaContract/ILogin/CreateAnAccountResponse")]
+        int CreateAnAccount(string username, string password, string firstname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/CreateAnAccount", ReplyAction="TriviaContract/ILogin/CreateAnAccountResponse")]
+        System.Threading.Tasks.Task<int> CreateAnAccountAsync(string username, string password, string firstname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/ListOfOnlinePlayers", ReplyAction="TriviaContract/ILogin/ListOfOnlinePlayersResponse")]
+        string[] ListOfOnlinePlayers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/ListOfOnlinePlayers", ReplyAction="TriviaContract/ILogin/ListOfOnlinePlayersResponse")]
+        System.Threading.Tasks.Task<string[]> ListOfOnlinePlayersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/ListOfAllPlayers", ReplyAction="TriviaContract/ILogin/ListOfAllPlayersResponse")]
+        string[] ListOfAllPlayers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/ListOfAllPlayers", ReplyAction="TriviaContract/ILogin/ListOfAllPlayersResponse")]
+        System.Threading.Tasks.Task<string[]> ListOfAllPlayersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/PlayerStats", ReplyAction="TriviaContract/ILogin/PlayerStatsResponse")]
+        string PlayerStats(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/PlayerStats", ReplyAction="TriviaContract/ILogin/PlayerStatsResponse")]
+        System.Threading.Tasks.Task<string> PlayerStatsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/PlayerOffline", ReplyAction="TriviaContract/ILogin/PlayerOfflineResponse")]
+        void PlayerOffline(string username, int offline);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/ILogin/PlayerOffline", ReplyAction="TriviaContract/ILogin/PlayerOfflineResponse")]
+        System.Threading.Tasks.Task PlayerOfflineAsync(string username, int offline);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ILoginChannel : TriviaClient.TriviaServer.ILogin, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class LoginClient : System.ServiceModel.ClientBase<TriviaClient.TriviaServer.ILogin>, TriviaClient.TriviaServer.ILogin {
+        
+        public LoginClient() {
+        }
+        
+        public LoginClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public LoginClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public LoginClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public LoginClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public int Login(string username, string password) {
+            return base.Channel.Login(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<int> LoginAsync(string username, string password) {
+            return base.Channel.LoginAsync(username, password);
+        }
+        
+        public int CreateAnAccount(string username, string password, string firstname) {
+            return base.Channel.CreateAnAccount(username, password, firstname);
+        }
+        
+        public System.Threading.Tasks.Task<int> CreateAnAccountAsync(string username, string password, string firstname) {
+            return base.Channel.CreateAnAccountAsync(username, password, firstname);
+        }
+        
+        public string[] ListOfOnlinePlayers() {
+            return base.Channel.ListOfOnlinePlayers();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> ListOfOnlinePlayersAsync() {
+            return base.Channel.ListOfOnlinePlayersAsync();
+        }
+        
+        public string[] ListOfAllPlayers() {
+            return base.Channel.ListOfAllPlayers();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> ListOfAllPlayersAsync() {
+            return base.Channel.ListOfAllPlayersAsync();
+        }
+        
+        public string PlayerStats(string username) {
+            return base.Channel.PlayerStats(username);
+        }
+        
+        public System.Threading.Tasks.Task<string> PlayerStatsAsync(string username) {
+            return base.Channel.PlayerStatsAsync(username);
+        }
+        
+        public void PlayerOffline(string username, int offline) {
+            base.Channel.PlayerOffline(username, offline);
+        }
+        
+        public System.Threading.Tasks.Task PlayerOfflineAsync(string username, int offline) {
+            return base.Channel.PlayerOfflineAsync(username, offline);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="TriviaContract", ConfigurationName="TriviaServer.IGame", CallbackContract=typeof(TriviaClient.TriviaServer.IGameCallback))]
     public interface IGame {
         
@@ -295,11 +412,17 @@ namespace TriviaClient.TriviaServer {
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/startGame", ReplyAction="TriviaContract/IGame/startGameResponse")]
         System.Threading.Tasks.Task startGameAsync(int player1, int player2);
         
-        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getQuestion", ReplyAction="TriviaContract/IGame/getQuestionResponse")]
-        TriviaClient.TriviaServer.Question getQuestion(int counter);
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getResult", ReplyAction="TriviaContract/IGame/getResultResponse")]
+        void getResult(int player_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getResult", ReplyAction="TriviaContract/IGame/getResultResponse")]
+        System.Threading.Tasks.Task getResultAsync(int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getQuestion", ReplyAction="TriviaContract/IGame/getQuestionResponse")]
-        System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter);
+        TriviaClient.TriviaServer.Question getQuestion(int counter, int player_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/getQuestion", ReplyAction="TriviaContract/IGame/getQuestionResponse")]
+        System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter, int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="TriviaContract/IGame/setReady", ReplyAction="TriviaContract/IGame/setReadyResponse")]
         void setReady(int playerId);
@@ -331,6 +454,9 @@ namespace TriviaClient.TriviaServer {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/startGameInClient")]
         void startGameInClient(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="TriviaContract/IGame/results")]
+        void results(int playerId, int score, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -393,12 +519,20 @@ namespace TriviaClient.TriviaServer {
             return base.Channel.startGameAsync(player1, player2);
         }
         
-        public TriviaClient.TriviaServer.Question getQuestion(int counter) {
-            return base.Channel.getQuestion(counter);
+        public void getResult(int player_id) {
+            base.Channel.getResult(player_id);
         }
         
-        public System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter) {
-            return base.Channel.getQuestionAsync(counter);
+        public System.Threading.Tasks.Task getResultAsync(int player_id) {
+            return base.Channel.getResultAsync(player_id);
+        }
+        
+        public TriviaClient.TriviaServer.Question getQuestion(int counter, int player_id) {
+            return base.Channel.getQuestion(counter, player_id);
+        }
+        
+        public System.Threading.Tasks.Task<TriviaClient.TriviaServer.Question> getQuestionAsync(int counter, int player_id) {
+            return base.Channel.getQuestionAsync(counter, player_id);
         }
         
         public void setReady(int playerId) {

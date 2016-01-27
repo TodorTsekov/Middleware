@@ -2,12 +2,51 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="TriviaContract" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="TriviaContract" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="TriviaContract/Imports">
-      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd3" namespace="TriviaContract" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd5" namespace="TriviaContract" />
       <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/TriviaContract" />
-      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MySql.Data.MySqlClient" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.ComponentModel" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:8733/TriviaContract?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="ILogin_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_CreateAnAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAnAccount" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_CreateAnAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAnAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_ListOfOnlinePlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfOnlinePlayers" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_ListOfOnlinePlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfOnlinePlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_ListOfAllPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfAllPlayers" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_ListOfAllPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListOfAllPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_PlayerStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerStats" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_PlayerStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_PlayerOffline_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerOffline" />
+  </wsdl:message>
+  <wsdl:message name="ILogin_PlayerOffline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerOfflineResponse" />
+  </wsdl:message>
   <wsdl:message name="IGame_GetData_InputMessage">
     <wsdl:part name="parameters" element="tns:GetData" />
   </wsdl:message>
@@ -31,6 +70,12 @@
   </wsdl:message>
   <wsdl:message name="IGame_startGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:startGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGame_getResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:getResult" />
+  </wsdl:message>
+  <wsdl:message name="IGame_getResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getResultResponse" />
   </wsdl:message>
   <wsdl:message name="IGame_getQuestion_InputMessage">
     <wsdl:part name="parameters" element="tns:getQuestion" />
@@ -65,6 +110,35 @@
   <wsdl:message name="IGame_startGameInClient_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:startGameInClient" />
   </wsdl:message>
+  <wsdl:message name="IGame_results_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:results" />
+  </wsdl:message>
+  <wsdl:portType name="ILogin">
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="TriviaContract/ILogin/Login" message="tns:ILogin_Login_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/ILogin/LoginResponse" message="tns:ILogin_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAnAccount">
+      <wsdl:input wsaw:Action="TriviaContract/ILogin/CreateAnAccount" message="tns:ILogin_CreateAnAccount_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/ILogin/CreateAnAccountResponse" message="tns:ILogin_CreateAnAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfOnlinePlayers">
+      <wsdl:input wsaw:Action="TriviaContract/ILogin/ListOfOnlinePlayers" message="tns:ILogin_ListOfOnlinePlayers_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/ILogin/ListOfOnlinePlayersResponse" message="tns:ILogin_ListOfOnlinePlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfAllPlayers">
+      <wsdl:input wsaw:Action="TriviaContract/ILogin/ListOfAllPlayers" message="tns:ILogin_ListOfAllPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/ILogin/ListOfAllPlayersResponse" message="tns:ILogin_ListOfAllPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerStats">
+      <wsdl:input wsaw:Action="TriviaContract/ILogin/PlayerStats" message="tns:ILogin_PlayerStats_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/ILogin/PlayerStatsResponse" message="tns:ILogin_PlayerStats_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerOffline">
+      <wsdl:input wsaw:Action="TriviaContract/ILogin/PlayerOffline" message="tns:ILogin_PlayerOffline_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/ILogin/PlayerOfflineResponse" message="tns:ILogin_PlayerOffline_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
   <wsdl:portType name="IGame">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="TriviaContract/IGame/GetData" message="tns:IGame_GetData_InputMessage" />
@@ -81,6 +155,10 @@
     <wsdl:operation name="startGame">
       <wsdl:input wsaw:Action="TriviaContract/IGame/startGame" message="tns:IGame_startGame_InputMessage" />
       <wsdl:output wsaw:Action="TriviaContract/IGame/startGameResponse" message="tns:IGame_startGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getResult">
+      <wsdl:input wsaw:Action="TriviaContract/IGame/getResult" message="tns:IGame_getResult_InputMessage" />
+      <wsdl:output wsaw:Action="TriviaContract/IGame/getResultResponse" message="tns:IGame_getResult_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="getQuestion">
       <wsdl:input wsaw:Action="TriviaContract/IGame/getQuestion" message="tns:IGame_getQuestion_InputMessage" />
@@ -104,6 +182,9 @@
     </wsdl:operation>
     <wsdl:operation name="startGameInClient">
       <wsdl:output wsaw:Action="TriviaContract/IGame/startGameInClient" message="tns:IGame_startGameInClient_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="results">
+      <wsdl:output wsaw:Action="TriviaContract/IGame/results" message="tns:IGame_results_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\TriviaServer\ServerContract\ServerContract\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -55,16 +58,28 @@
       <DependentUpon>EndGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service References\TriviaServer\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="StartGame.cs">
+    <Compile Include="TriviaLobby.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartGame.Designer.cs">
-      <DependentUpon>StartGame.cs</DependentUpon>
+    <Compile Include="TriviaLobby.Designer.cs">
+      <DependentUpon>TriviaLobby.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,8 +92,14 @@
     <EmbeddedResource Include="EndGame.resx">
       <DependentUpon>EndGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StartGame.resx">
-      <DependentUpon>StartGame.cs</DependentUpon>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TriviaLobby.resx">
+      <DependentUpon>TriviaLobby.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -109,6 +130,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\TriviaServer\TriviaContract.wsdl" />
+    <None Include="Service References\TriviaServer\TriviaContract.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TriviaServer\TriviaContract1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -119,6 +143,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\TriviaServer\TriviaContract4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TriviaServer\TriviaContract5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TriviaServer\TriviaContract7.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
