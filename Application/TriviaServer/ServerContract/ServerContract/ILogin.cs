@@ -8,6 +8,7 @@ using TriviaContract;
 namespace TriviaContract
 {
     [ServiceContract(Namespace = "TriviaContract")]
+    [ServiceKnownType(typeof(DataHelper))]
     public interface ILogin
     {
         /// <summary>

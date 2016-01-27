@@ -10,3 +10,12 @@ C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClien
 C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\bin\Debug\TriviaClient.pdb
 C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.exe
 C:\Users\George II\OneDrive\Fontys\MDW-Group7\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.pdb
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\bin\Debug\TriviaClient.exe.config
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.csprojResolveAssemblyReference.cache
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.EndGame.resources
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.Login.resources
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.Register.resources
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.TriviaLobby.resources
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.Properties.Resources.resources
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.Trivia.resources
+C:\Users\todor\Documents\GitHub\Middleware\Application\TriviaClient\TriviaClient\obj\Debug\TriviaClient.csproj.GenerateResource.Cache
