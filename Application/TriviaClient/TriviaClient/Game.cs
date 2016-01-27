@@ -11,6 +11,7 @@ namespace TriviaClient
 {
     public class Game : IGameCallback
     {
+
         /// <summary>
         /// It notifies the client that the game starts.
         /// </summary>
@@ -20,9 +21,13 @@ namespace TriviaClient
             t.Show();
         }
 
-        public void results(int score, string message)
+        public void results(int playerId, int score, string message)
         {
-            MessageBox.Show("You " + message + " the game. Your score: " + score.ToString());
+            if (MessageBox.Show("Player " + playerId.ToString() + " " + message + " the game. Your score: " + score.ToString(), "Results",
+                MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+            {
+                Form.ActiveForm.Close();
+            }
         }
 
         /// <summary>
