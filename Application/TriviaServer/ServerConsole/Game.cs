@@ -11,7 +11,7 @@ namespace TriviaContract
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class Game : TriviaContract.ILogin,TriviaContract.IGame
+    public class Game : TriviaContract.IGame, TriviaContract.ILogin
     {
         int client_id;
         int question_counter;
@@ -114,16 +114,6 @@ namespace TriviaContract
         /// <param name="player2">Id of the 2nd player.</param>
         public void startGame(int player1, int player2)
         {
-            //for (int i = 0; i < games_array.GetLength(0); i++)
-            //{
-            //    for (int j = 0; j < 2; j++)
-            //    {
-            //        if (games_array[i, j] == player1 || games_array[i, j] == player2)
-            //        {
-            //            return;
-            //        }
-            //    }
-            //}
             Player p = search(player1);
             p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             p.callback.startGameInClient(p.id);
