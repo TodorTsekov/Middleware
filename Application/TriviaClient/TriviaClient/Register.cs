@@ -16,13 +16,13 @@ namespace TriviaClient
 {
     public partial class Register : Form
     {
-        private DataHandler dh;
+        //private DataHandler dh;
         LoginClient proxy;
 
         public Register()
         {
             InitializeComponent();
-            dh = new DataHandler();
+           // dh = new DataHandler();
             proxy = new LoginClient();
         }
 

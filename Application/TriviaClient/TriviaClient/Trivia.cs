@@ -105,5 +105,10 @@ namespace TriviaClient
             proxy.leave(global_id);
             Application.Exit();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
