@@ -6,12 +6,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{46C67986-0E8A-46D8-8AFE-9C7DA0CCD41E}</ProjectGuid>
+    <ProjectGuid>{4416BCAC-4A96-4E68-8B0F-778D440E2841}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServerContract</RootNamespace>
-    <AssemblyName>ServerContract</AssemblyName>
-    <!--<ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>-->
+    <RootNamespace>ChatServiceMDW</RootNamespace>
+    <AssemblyName>ChatServiceMDW</AssemblyName>
+    <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
@@ -36,8 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="mysql.data">
-      <HintPath>..\..\ChatServiceMDW\ChatServiceMDW\bin\Debug\mysql.data.dll</HintPath>
+    <Reference Include="mysql.data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\mysql.data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,18 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHelper.cs" />
-    <Compile Include="ILogin.cs" />
-    <Compile Include="Utilities\Answer.cs" />
+    <Compile Include="IChatCallback.cs" />
     <Compile Include="IChat.cs" />
-    <Compile Include="Callbacks\IChatCallback.cs" />
-    <Compile Include="IGame.cs" />
-    <Compile Include="Callbacks\IGameCallback.cs" />
-    <Compile Include="Utilities\Player.cs" />
+    <Compile Include="ILogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Question.cs" />
+    <Compile Include="CChat.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -69,7 +71,15 @@
     <WcfServiceModelTargetPath>$(VSToolsPath)\WCF</WcfServiceModelTargetPath>
   </PropertyGroup>
   <Import Project="$(WcfServiceModelTargetPath)\Microsoft.VisualStudio.ServiceModel.targets" />
-  <ProjectExtensions />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
+        <WcfProjectProperties>
+          <AutoStart>True</AutoStart>
+        </WcfProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
