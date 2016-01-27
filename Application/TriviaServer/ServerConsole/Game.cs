@@ -11,13 +11,17 @@ namespace TriviaContract
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class Game : TriviaContract.IGame
+    public class Game : TriviaContract.ILogin,TriviaContract.IGame
     {
         int client_id;
         int question_counter;
         int[,] games_array; 
         List<Player> list_players;
         List<Question> list_question;
+        //login
+        DataHelper dataHelper;
+       
+        List<string> playerslist = new List<string>();
 
         public Game()
         {
@@ -33,6 +37,8 @@ namespace TriviaContract
             }
             this.list_players = new List<Player>();
             populate();
+            //login
+            dataHelper = new DataHelper();
         }
 
         private void populate()
@@ -301,6 +307,47 @@ namespace TriviaContract
         public void restart(int playerId)
         {
             return;
+        }
+
+        //Login
+
+        public int Login(string username, string pass)
+        {
+            int temp;
+            temp = dataHelper.LogIn(username, pass);
+            return temp;
+        }
+
+
+        public int CreateAnAccount(string username, string password, string firstname)
+        {
+            int temp;
+            temp = dataHelper.CreateAnAccount(username, password, firstname);
+            return temp;
+        }
+
+        public List<string> ListOfOnlinePlayers()
+        {
+            playerslist = dataHelper.ListOfOnlinePlayers();
+            return playerslist;
+        }
+
+        public List<string> ListOfAllPlayers()
+        {
+            playerslist = dataHelper.ListOfAllPlayers();
+            return playerslist;
+        }
+
+        public string PlayerStats(string username)
+        {
+            string temp;
+            temp = dataHelper.PlayerStats(username);
+            return temp;
+        }
+
+        public void PlayerOffline(string username, int offline)
+        {
+            dataHelper.PlayerOffline(username, offline);
         }
     }
 }
