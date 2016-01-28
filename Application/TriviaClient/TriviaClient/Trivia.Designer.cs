@@ -37,7 +37,6 @@
             this.countdown = new System.Windows.Forms.Timer(this.components);
             this.Timer = new System.Windows.Forms.Label();
             this.lb_chat = new System.Windows.Forms.ListBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.bt_leave = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -117,24 +116,15 @@
             this.lb_chat.Size = new System.Drawing.Size(407, 95);
             this.lb_chat.TabIndex = 7;
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(483, 264);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(73, 62);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Pause game";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // bt_leave
             // 
-            this.bt_leave.Location = new System.Drawing.Point(634, 264);
+            this.bt_leave.Location = new System.Drawing.Point(592, 264);
             this.bt_leave.Name = "bt_leave";
-            this.bt_leave.Size = new System.Drawing.Size(75, 65);
+            this.bt_leave.Size = new System.Drawing.Size(117, 65);
             this.bt_leave.TabIndex = 9;
             this.bt_leave.Text = "Leave Game";
             this.bt_leave.UseVisualStyleBackColor = true;
+            this.bt_leave.Click += new System.EventHandler(this.bt_leave_Click);
             // 
             // button6
             // 
@@ -197,7 +187,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.bt_leave);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.lb_chat);
             this.Controls.Add(this.Timer);
             this.Controls.Add(this.lb_game_score);
@@ -221,7 +210,6 @@
         private System.Windows.Forms.Timer countdown;
         private System.Windows.Forms.Label Timer;
         private System.Windows.Forms.ListBox lb_chat;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button bt_leave;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox1;

@@ -99,5 +99,10 @@ namespace TriviaClient
                 ask();
             }
         }
+
+        private void bt_leave_Click(object sender, EventArgs e)
+        {
+            proxy.leave(global_id);
+        }
     }
 }
