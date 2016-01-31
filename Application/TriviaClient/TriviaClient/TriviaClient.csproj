@@ -101,25 +101,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\TriviaServer\Game.wsdl" />
+    <None Include="Service References\TriviaServer\Game1.wsdl" />
+    <None Include="Service References\TriviaServer\IGame.wsdl" />
+    <None Include="Service References\TriviaServer\IGame.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TriviaServer\IGame1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TriviaServer\IGame2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TriviaServer\IGame3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TriviaServer\TriviaClient.TriviaServer.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\TriviaServer\TriviaClient.TriviaServer.Question.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\TriviaServer\TriviaContract.wsdl" />
-    <None Include="Service References\TriviaServer\TriviaContract1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TriviaServer\TriviaContract2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TriviaServer\TriviaContract3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TriviaServer\TriviaContract4.xsd">
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +132,6 @@
     <WCFMetadataStorage Include="Service References\TriviaServer\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TriviaServer\TriviaContract.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\TriviaServer\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +142,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TriviaServer\IGame.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

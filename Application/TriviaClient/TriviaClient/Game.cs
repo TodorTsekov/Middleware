@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace TriviaClient
 {
-    public class Game : IGameCallback
+    public class Game : IGameCallback, IChatCallback
     {
 
         /// <summary>

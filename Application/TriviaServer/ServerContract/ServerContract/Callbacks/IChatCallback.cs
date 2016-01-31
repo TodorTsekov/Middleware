@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
+using System.Runtime.Serialization;
 
 namespace TriviaContract
 {
@@ -13,6 +15,7 @@ namespace TriviaContract
         /// </summary>
         /// <param name="id">The id of the player that sent the message.</param>
         /// <param name="message">The body of the message.</param>
+        [OperationContract(IsOneWay = true)]
         void getMessage(int id, string message);
     }
 }

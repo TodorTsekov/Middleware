@@ -11,7 +11,7 @@ namespace TriviaContract
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class Game : TriviaContract.IGame
+    public class Game : TriviaContract.IGame, TriviaContract.IChat
     {
         int client_id;
         int question_counter;
@@ -91,6 +91,36 @@ namespace TriviaContract
             throw new Exception("Player not found.");
         }
 
+        public void sendMessage(int senderId, string message)
+        {
+            bool found = false;
+            int i = 0;
+            Player receiver = null;
+            //find the other player
+            while (found == false && i < games_array.GetLength(0))
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (games_array[i, j] == senderId)
+                    {
+                        if (j == 0)
+                        {
+                            receiver = search(games_array[i, 1]);
+                        }
+                        else
+                        {
+                            receiver = search(games_array[i, 0]);
+                        }
+                        found = true;
+                    }
+                }
+                i++;
+            }
+            //send the message
+            receiver.chatCallback = OperationContext.Current.GetCallbackChannel<IChatCallback>();
+            receiver.chatCallback.getMessage(senderId, message);
+        }
+
         /// <summary>
         /// Sets the id of each client.
         /// </summary>
@@ -119,12 +149,12 @@ namespace TriviaContract
             //    }
             //}
             Player p = search(player1);
-            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-            p.callback.startGameInClient(p.id);
+            p.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.gameCallback.startGameInClient(p.id);
             p = null;
             p = search(player2);
-            p.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-            p.callback.startGameInClient(p.id);
+            p.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p.gameCallback.startGameInClient(p.id);
 
             Console.WriteLine("Players {0} and {1} have started a game.", player1.ToString(), player2.ToString());
         }
@@ -182,22 +212,22 @@ namespace TriviaContract
             }
 
             //delicer the reults
-            p1.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
-            p2.callback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p1.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
+            p2.gameCallback = OperationContext.Current.GetCallbackChannel<IGameCallback>();
             if (temp_p1 > temp_p2)
             {
-                p1.callback.results(p1.id, temp_p1, "win");
-                p2.callback.results(p2.id, temp_p2, "lost");
+                p1.gameCallback.results(p1.id, temp_p1, "win");
+                p2.gameCallback.results(p2.id, temp_p2, "lost");
             }
             else if (temp_p1 < temp_p2)
             {
-                p1.callback.results(p1.id, temp_p1, "lost");
-                p2.callback.results(p2.id, temp_p2, "win");
+                p1.gameCallback.results(p1.id, temp_p1, "lost");
+                p2.gameCallback.results(p2.id, temp_p2, "win");
             }
             else
             {
-                p1.callback.results(p1.id, temp_p1, "draw");
-                p2.callback.results(p2.id, temp_p2, "draw");
+                p1.gameCallback.results(p1.id, temp_p1, "draw");
+                p2.gameCallback.results(p2.id, temp_p2, "draw");
             }
         }
 
