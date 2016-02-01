@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using TriviaContract;
 
 namespace TriviaContract
 {
+    [ServiceContract(Namespace = "TriviaContract", CallbackContract = typeof(IChatCallback))]
     public interface IChat
     {
         /// <summary>

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TriviaClient.TriviaServer;
+using TriviaClient.GameReference;
 using System.ServiceModel;
 
 namespace TriviaClient

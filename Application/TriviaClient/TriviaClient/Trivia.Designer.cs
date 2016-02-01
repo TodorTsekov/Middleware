@@ -43,6 +43,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbl_global_id = new System.Windows.Forms.Label();
             this.lbl_countdown = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -128,12 +129,13 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(236, 353);
+            this.button6.Location = new System.Drawing.Point(329, 353);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(186, 46);
+            this.button6.Size = new System.Drawing.Size(93, 46);
             this.button6.TabIndex = 10;
             this.button6.Text = "Send Message";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // groupBox1
             // 
@@ -176,11 +178,19 @@
             this.lbl_countdown.Text = "5";
             this.lbl_countdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(15, 367);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(308, 20);
+            this.textBox1.TabIndex = 15;
+            // 
             // Trivia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 446);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lbl_countdown);
             this.Controls.Add(this.lbl_global_id);
             this.Controls.Add(this.groupBox2);
@@ -216,5 +226,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbl_global_id;
         private System.Windows.Forms.Label lbl_countdown;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

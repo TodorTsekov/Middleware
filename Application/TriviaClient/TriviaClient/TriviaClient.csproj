@@ -55,7 +55,7 @@
       <DependentUpon>EndGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
-    <Compile Include="Service References\TriviaServer\Reference.cs">
+    <Compile Include="Service References\GameReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -101,24 +101,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\TriviaServer\Game1.wsdl" />
-    <None Include="Service References\TriviaServer\IGame.wsdl" />
-    <None Include="Service References\TriviaServer\IGame.xsd">
+    <None Include="Service References\GameReference\Game.wsdl" />
+    <None Include="Service References\GameReference\IGame.wsdl" />
+    <None Include="Service References\GameReference\IGame.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TriviaServer\IGame1.xsd">
+    <None Include="Service References\GameReference\IGame1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TriviaServer\IGame2.xsd">
+    <None Include="Service References\GameReference\IGame2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TriviaServer\IGame3.xsd">
+    <None Include="Service References\GameReference\IGame3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TriviaServer\TriviaClient.TriviaServer.CompositeType.datasource">
+    <None Include="Service References\GameReference\TriviaClient.GameReference.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TriviaServer\TriviaClient.TriviaServer.Question.datasource">
+    <None Include="Service References\GameReference\TriviaClient.GameReference.Question.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -129,22 +129,22 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\TriviaServer\" />
+    <WCFMetadataStorage Include="Service References\GameReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TriviaServer\configuration91.svcinfo" />
+    <None Include="Service References\GameReference\IGame.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TriviaServer\configuration.svcinfo" />
+    <None Include="Service References\GameReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TriviaServer\Reference.svcmap">
+    <None Include="Service References\GameReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GameReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TriviaServer\IGame.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

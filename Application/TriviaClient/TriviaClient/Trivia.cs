@@ -7,16 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TriviaClient.TriviaServer;
+using TriviaClient.GameReference;
 using System.ServiceModel;
 using System.Media;
 
 namespace TriviaClient
 {
-    public partial class Trivia : Form
+    public partial class Trivia : Form, IChatCallback
     {
-        private TriviaServer.GameClient proxy;
+        private GameReference.GameClient gameProxy;
+        private GameReference.ChatClient chatProxy;
         static Game callback;
+        static Trivia chatcallback;
         /// <summary>
         /// Callback context.
         /// </summary>
@@ -28,15 +30,23 @@ namespace TriviaClient
         public Trivia(int id)
         {
             InitializeComponent();
+
+            //initialize game server
             callback = new Game();
             ctx = new InstanceContext(callback);
-            proxy = new TriviaServer.GameClient(ctx);
+            gameProxy = new GameReference.GameClient(ctx);
+
+            //initialize chat server
+            chatcallback = new Trivia(id);
+            ctx = new InstanceContext(chatcallback);
+            chatProxy = new ChatClient(ctx);
+
             global_id = id;
             timer_counter = 5;
             tick = new SoundPlayer(@"..\..\tick.wma");
             this.lbl_global_id.Text = id.ToString();
             this.question_counter = 1;
-            Question question = proxy.getQuestion(question_counter, global_id);
+            Question question = gameProxy.getQuestion(question_counter, global_id);
             question_counter++;
             lbl_questionText.Text = question.questionText;
             bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
@@ -45,9 +55,14 @@ namespace TriviaClient
             countdown.Start();
         }
 
+        public void getMessage(int sender, string message)
+        {
+            lb_chat.Items.Add(string.Format("Player {0} says: {1}", sender.ToString(), message));
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
-            Question question = proxy.getQuestion(question_counter, global_id);
+            Question question = gameProxy.getQuestion(question_counter, global_id);
             lbl_questionText.Text = question.questionText;
 
             bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
@@ -58,25 +73,25 @@ namespace TriviaClient
 
         private void bt_answer2_Click(object sender, EventArgs e)
         {
-            proxy.setAnswer(global_id, question_counter - 1, 1);
+            gameProxy.setAnswer(global_id, question_counter - 1, 1);
             ask();
         }
 
         private void bt_answer1_Click(object sender, EventArgs e)
         {
-            proxy.setAnswer(global_id, question_counter - 1, 0);
+            gameProxy.setAnswer(global_id, question_counter - 1, 0);
             ask();
         }
 
         private void bt_answer3_Click(object sender, EventArgs e)
         {
-            proxy.setAnswer(global_id, question_counter - 1, 2);
+            gameProxy.setAnswer(global_id, question_counter - 1, 2);
             ask();
         }
 
         private void ask()
         {
-            Question question = proxy.getQuestion(question_counter, global_id);
+            Question question = gameProxy.getQuestion(question_counter, global_id);
             lbl_questionText.Text = question.questionText;
 
             bt_answer1.Text = question.answer.ar_question_answers[0].ToString();
@@ -102,7 +117,12 @@ namespace TriviaClient
 
         private void bt_leave_Click(object sender, EventArgs e)
         {
-            proxy.leave(global_id);
+            gameProxy.leave(global_id);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            chatProxy.sendMessage(global_id, textBox1.Text);
         }
     }
 }

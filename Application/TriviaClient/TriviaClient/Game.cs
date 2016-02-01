@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
-using TriviaClient.TriviaServer;
+using TriviaClient.GameReference;
 using System.Windows.Forms;
 
 namespace TriviaClient
 {
-    public class Game : IGameCallback, IChatCallback
+    public class Game : IGameCallback
     {
 
         /// <summary>
@@ -37,7 +37,6 @@ namespace TriviaClient
         /// <param name="message">The body of the message.</param>
         public void getMessage(int id, string message)
         {
-            return;
         }
     }
 }
